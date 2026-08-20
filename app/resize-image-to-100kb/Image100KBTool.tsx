@@ -2,7 +2,11 @@
 
 import { ChangeEvent, useRef, useState } from "react";
 
-export default function Image100KBTool() {
+type ImageToolProps = {
+  targetKB?: number;
+};
+
+export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [file, setFile] = useState<File | null>(null);
@@ -50,7 +54,7 @@ export default function Image100KBTool() {
     });
   }
 
-  async function compressTo100KB() {
+  async function compressToTargetKB() {
     if (!file || !preview) return;
 
     setProcessing(true);
@@ -64,7 +68,7 @@ export default function Image100KBTool() {
         let currentWidth = img.width;
         let currentHeight = img.height;
 
-        const targetBytes = 100 * 1024;
+        const targetBytes = targetKB * 1024;
         const outputType =
           file.type === "image/webp" ? "image/webp" : "image/jpeg";
 
@@ -124,7 +128,7 @@ export default function Image100KBTool() {
 
         if (!bestBlob) {
           setError(
-            "We could not reach 100KB for this image. Try a smaller source image."
+            `We could not reach ${targetKB}KB for this image. Try a smaller source image.`
           );
           setProcessing(false);
           return;
@@ -160,7 +164,7 @@ export default function Image100KBTool() {
     const link = document.createElement("a");
 
     link.href = resultUrl;
-    link.download = `resizefox-100kb.${extension}`;
+    link.download = `resizefox-${targetKB}kb.${extension}`;
 
     document.body.appendChild(link);
     link.click();
@@ -223,26 +227,25 @@ export default function Image100KBTool() {
             </p>
 
             <h2 className="mt-2 text-3xl font-black">
-              Compress to 100KB
+              Compress to {targetKB}KB
             </h2>
 
             <p className="mt-3 leading-7 text-slate-600">
               ResizeFox will automatically adjust image quality and,
-              when needed, image dimensions to get the file under 100KB.
+              when needed, image dimensions to get the file under {targetKB}KB.
             </p>
 
             {!resultBlob && (
-              <button
-                onClick={compressTo100KB}
-                disabled={processing}
-                className="mt-7 rounded-xl bg-orange-500 px-6 py-4 font-extrabold text-white transition hover:bg-orange-600 disabled:opacity-50"
-              >
+        <button
+             onClick={compressToTargetKB}
+            disabled={processing}
+            className="mt-7 rounded-xl bg-orange-500 px-6 py-4 font-extrabold text-white transition hover:bg-orange-600 disabled:opacity-50"
+            >
                 {processing
-                  ? "Compressing..."
-                  : "Compress Image to 100KB"}
-              </button>
-            )}
-
+                 ? "Compressing..."
+                : `Compress Image to ${targetKB}KB`}
+        </button>
+)}    
             {resultBlob && (
               <div className="mt-7 rounded-2xl bg-green-50 p-5">
                 <p className="font-extrabold text-green-800">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import Image100KBTool from "./Image100KBTool";
 export const metadata: Metadata = {
   title: "Resize Image to 100KB Online Free",
   description:
@@ -51,35 +51,7 @@ export default function ResizeImageTo100KB() {
           Your image is processed directly in your browser.
         </p>
 
-        <div
-          style={{
-            border: "2px dashed #ff6600",
-            borderRadius: "20px",
-            padding: "60px 20px",
-            marginBottom: "60px",
-          }}
-        >
-          <h2>Compress an Image to 100KB</h2>
-
-          <p style={{ margin: "15px 0 25px" }}>
-            Upload your image to get started.
-          </p>
-
-          <button
-            style={{
-              background: "#ff6600",
-              color: "white",
-              border: "none",
-              padding: "16px 30px",
-              borderRadius: "10px",
-              fontSize: "18px",
-              fontWeight: 700,
-              cursor: "pointer",
-            }}
-          >
-            Upload Image
-          </button>
-        </div>
+        <Image100KBTool />
 
         <section style={{ textAlign: "left" }}>
           <h2>How to Resize an Image to 100KB</h2>
