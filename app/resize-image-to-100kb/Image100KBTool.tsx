@@ -1,0 +1,302 @@
+"use client";
+
+import { ChangeEvent, useRef, useState } from "react";
+
+export default function Image100KBTool() {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState("");
+  const [resultBlob, setResultBlob] = useState<Blob | null>(null);
+  const [resultUrl, setResultUrl] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState("");
+
+  function formatBytes(bytes: number) {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
+    return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+  }
+
+  function handleFile(event: ChangeEvent<HTMLInputElement>) {
+    const selectedFile = event.target.files?.[0];
+
+    if (!selectedFile) return;
+
+    if (!selectedFile.type.startsWith("image/")) {
+      setError("Please choose a valid image file.");
+      return;
+    }
+
+    if (preview) URL.revokeObjectURL(preview);
+    if (resultUrl) URL.revokeObjectURL(resultUrl);
+
+    setError("");
+    setResultBlob(null);
+    setResultUrl("");
+    setFile(selectedFile);
+
+    const url = URL.createObjectURL(selectedFile);
+    setPreview(url);
+  }
+
+  function canvasToBlob(
+    canvas: HTMLCanvasElement,
+    type: string,
+    quality: number
+  ): Promise<Blob | null> {
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(blob), type, quality);
+    });
+  }
+
+  async function compressTo100KB() {
+    if (!file || !preview) return;
+
+    setProcessing(true);
+    setError("");
+    setResultBlob(null);
+
+    try {
+      const img = new Image();
+
+      img.onload = async () => {
+        let currentWidth = img.width;
+        let currentHeight = img.height;
+
+        const targetBytes = 100 * 1024;
+        const outputType =
+          file.type === "image/webp" ? "image/webp" : "image/jpeg";
+
+        let bestBlob: Blob | null = null;
+
+        for (let dimensionPass = 0; dimensionPass < 8; dimensionPass++) {
+          const canvas = document.createElement("canvas");
+
+          canvas.width = Math.max(1, Math.round(currentWidth));
+          canvas.height = Math.max(1, Math.round(currentHeight));
+
+          const ctx = canvas.getContext("2d");
+
+          if (!ctx) {
+            setError("Your browser could not process this image.");
+            setProcessing(false);
+            return;
+          }
+
+          if (outputType === "image/jpeg") {
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          let minQuality = 0.05;
+          let maxQuality = 1;
+
+          for (let i = 0; i < 14; i++) {
+            const quality = (minQuality + maxQuality) / 2;
+
+            const blob = await canvasToBlob(
+              canvas,
+              outputType,
+              quality
+            );
+
+            if (!blob) break;
+
+            if (blob.size <= targetBytes) {
+              bestBlob = blob;
+              minQuality = quality;
+            } else {
+              maxQuality = quality;
+            }
+          }
+
+          if (bestBlob) break;
+
+          currentWidth *= 0.85;
+          currentHeight *= 0.85;
+        }
+
+        if (!bestBlob) {
+          setError(
+            "We could not reach 100KB for this image. Try a smaller source image."
+          );
+          setProcessing(false);
+          return;
+        }
+
+        if (resultUrl) URL.revokeObjectURL(resultUrl);
+
+        const url = URL.createObjectURL(bestBlob);
+
+        setResultBlob(bestBlob);
+        setResultUrl(url);
+        setProcessing(false);
+      };
+
+      img.onerror = () => {
+        setError("Could not read this image.");
+        setProcessing(false);
+      };
+
+      img.src = preview;
+    } catch {
+      setError("Something went wrong while compressing the image.");
+      setProcessing(false);
+    }
+  }
+
+  function downloadResult() {
+    if (!resultBlob || !resultUrl) return;
+
+    const extension =
+      resultBlob.type === "image/webp" ? "webp" : "jpg";
+
+    const link = document.createElement("a");
+
+    link.href = resultUrl;
+    link.download = `resizefox-100kb.${extension}`;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  function resetTool() {
+    if (preview) URL.revokeObjectURL(preview);
+    if (resultUrl) URL.revokeObjectURL(resultUrl);
+
+    setFile(null);
+    setPreview("");
+    setResultBlob(null);
+    setResultUrl("");
+    setError("");
+
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }
+
+  return (
+    <div className="mt-10 rounded-3xl border border-orange-200 bg-white p-6 shadow-sm sm:p-8">
+      {!file ? (
+        <button
+          onClick={() => inputRef.current?.click()}
+          className="w-full rounded-2xl border-2 border-dashed border-orange-300 px-6 py-14 text-center transition hover:border-orange-500"
+        >
+          <div className="text-4xl">🖼️</div>
+
+          <p className="mt-4 text-xl font-bold">
+            Upload your image
+          </p>
+
+          <p className="mt-2 text-sm text-slate-500">
+            JPG, PNG or WebP
+          </p>
+
+          <span className="mt-5 inline-block rounded-xl bg-orange-500 px-6 py-3 font-bold text-white">
+            Choose Image
+          </span>
+        </button>
+      ) : (
+        <div className="grid gap-8 md:grid-cols-2">
+          <div>
+            <img
+              src={preview}
+              alt="Selected image preview"
+              className="max-h-[380px] w-full rounded-2xl bg-slate-50 object-contain"
+            />
+
+            <div className="mt-4 text-center text-sm text-slate-500">
+              Original size: {formatBytes(file.size)}
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <p className="text-sm font-bold text-orange-500">
+              TARGET SIZE
+            </p>
+
+            <h2 className="mt-2 text-3xl font-black">
+              Compress to 100KB
+            </h2>
+
+            <p className="mt-3 leading-7 text-slate-600">
+              ResizeFox will automatically adjust image quality and,
+              when needed, image dimensions to get the file under 100KB.
+            </p>
+
+            {!resultBlob && (
+              <button
+                onClick={compressTo100KB}
+                disabled={processing}
+                className="mt-7 rounded-xl bg-orange-500 px-6 py-4 font-extrabold text-white transition hover:bg-orange-600 disabled:opacity-50"
+              >
+                {processing
+                  ? "Compressing..."
+                  : "Compress Image to 100KB"}
+              </button>
+            )}
+
+            {resultBlob && (
+              <div className="mt-7 rounded-2xl bg-green-50 p-5">
+                <p className="font-extrabold text-green-800">
+                  ✅ Image ready
+                </p>
+
+                <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-slate-500">Original</p>
+                    <p className="font-bold">
+                      {formatBytes(file.size)}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-slate-500">New size</p>
+                    <p className="font-bold">
+                      {formatBytes(resultBlob.size)}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={downloadResult}
+                  className="mt-5 w-full rounded-xl bg-slate-950 px-6 py-4 font-extrabold text-white"
+                >
+                  Download Image
+                </button>
+              </div>
+            )}
+
+            {error && (
+              <p className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-700">
+                {error}
+              </p>
+            )}
+
+            <button
+              onClick={resetTool}
+              className="mt-3 rounded-xl border border-slate-200 px-6 py-3 font-bold"
+            >
+              Choose Another Image
+            </button>
+          </div>
+        </div>
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        onChange={handleFile}
+        className="hidden"
+      />
+    </div>
+  );
+}
