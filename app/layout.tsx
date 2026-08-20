@@ -12,10 +12,8 @@ export const metadata: Metadata = {
   description:
     "Resize, compress and convert JPG, PNG and WebP images online for free. Fast, private browser-based image tools with no signup required.",
    verification: {
-
-    google: "K5EcWw5UpwswHPyHgXkVZduITx7C-u1sYsrVIA3-Oy0",
-
-  },
+  google: "K5EcWw5UpwswHPyHgXkVzdUUTx7C-ulsY5rVIA3-Oy0",
+},
   keywords: [
     "image resizer",
     "resize image online",
