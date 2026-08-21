@@ -5,9 +5,10 @@ export const metadata: Metadata = {
   title: "Resize Image to 20KB Online Free",
   description:
     "Resize and compress an image to 20KB online for free. Fast, private and easy-to-use JPG, PNG and WebP image compressor.",
-  alternates: {
-    canonical: "/resize-image-to-20kb",
-  },
+  // 20KB
+alternates: {
+  canonical: "/resize-image-to-20kb",
+},
 };
 
 export default function ResizeImageTo20KB() {
