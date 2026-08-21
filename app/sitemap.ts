@@ -64,5 +64,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   changeFrequency: "weekly",
   priority: 0.9,
  },
+ {
+  url: `${baseUrl}/resize-image-to-250kb`,
+  lastModified: new Date(),
+  changeFrequency: "weekly",
+  priority: 0.9,
+ },
   ];
 }
