@@ -1,131 +1,31 @@
 import type { Metadata } from "next";
-import Image100KBTool from "../resize-image-to-100kb/Image100KBTool";
+import ImageSizeSeoPage from "../ImageSizeSeoPage";
 
 export const metadata: Metadata = {
-  title: "Compress Image to 500KB Online Free | ResizeFox",
+  title: "Compress Image to 500KB for Web and Email",
   description:
-    "Compress JPG, PNG and WebP images to 500KB online for free. Reduce image file size quickly with private browser-based processing and no signup.",
+    "Compress an image to 500KB or less for product listings, websites and email. Optimize JPG, PNG and WebP files free in your browser.",
   alternates: {
     canonical: "/resize-image-to-500kb",
   },
 };
 
 export default function ResizeImageTo500KB() {
-  return (
-    <main className="min-h-screen bg-[#080808] text-white">
-      <section className="mx-auto max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
-        <p className="font-bold text-orange-500">
-          Free • Private • No Signup
-        </p>
-
-        <h1 className="mt-4 text-4xl font-black sm:text-6xl">
-          Resize Image to 500KB Online
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-          Reduce your JPG, PNG or WebP image to approximately 500KB directly
-          in your browser. No account or software installation required.
-        </p>
-
-        <Image100KBTool targetKB={500} />
-
-        <section className="mx-auto mt-14 max-w-3xl text-left">
-          <h2 className="text-2xl font-black">
-            How to Compress an Image to 500KB
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-300">
-            Choose an image from your device and ResizeFox will optimize it
-            toward a 500KB file-size target. Depending on the original image,
-            the tool can adjust compression quality and image dimensions while
-            trying to preserve useful visual detail.
-          </p>
-
-          <h2 className="mt-10 text-2xl font-black">
-            When Is a 500KB Image Useful?
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-300">
-            A 500KB image is a practical size for many websites, online forms,
-            email attachments, product images and profile photos. It can reduce
-            upload time while keeping more visual detail than very small
-            file-size targets such as 20KB or 50KB.
-          </p>
-
-          <h2 className="mt-10 text-2xl font-black">
-            Does Compressing to 500KB Reduce Image Quality?
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-300">
-            Some compression may be required when the original file is much
-            larger than 500KB. ResizeFox attempts to use the available file
-            size efficiently, but the final quality depends on the original
-            image dimensions, format and visual complexity.
-          </p>
-
-          <h2 className="mt-10 text-2xl font-black">
-            Private Image Processing
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-300">
-            Your image is processed locally in your browser. It does not need
-            to be uploaded to ResizeFox servers for the compression process.
-          </p>
-        </section>
-
-        <section className="mx-auto mt-14 max-w-3xl text-left">
-          <h2 className="text-2xl font-black">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="mt-7 space-y-7">
-            <div>
-              <h3 className="text-lg font-bold">
-                Will the image be exactly 500KB?
-              </h3>
-
-              <p className="mt-2 leading-7 text-slate-300">
-                ResizeFox aims for approximately 500KB or below. The exact
-                result depends on the original image and the amount of
-                compression required.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold">
-                Can I compress JPG, PNG and WebP images?
-              </h3>
-
-              <p className="mt-2 leading-7 text-slate-300">
-                Yes. ResizeFox supports JPG, PNG and WebP images.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold">
-                Is the 500KB compressor free?
-              </h3>
-
-              <p className="mt-2 leading-7 text-slate-300">
-                Yes. You can use the tool for free without creating an
-                account.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold">
-                Is 500KB suitable for website images?
-              </h3>
-
-              <p className="mt-2 leading-7 text-slate-300">
-                It can be. The ideal size depends on the image dimensions,
-                required visual quality and the website where the image will
-                be used.
-              </p>
-            </div>
-          </div>
-        </section>
-      </section>
-    </main>
-  );
+  return <ImageSizeSeoPage
+    badge="No Upload • No Software • Free"
+    heading="Compress an Image to 500KB"
+    intro="Keep useful visual detail while reducing a heavy image for the web, email or an online listing. The entire optimization runs privately in your browser."
+    targetKB={500}
+    sections={[
+      { heading: "A Simple 500KB Workflow", body: "Choose a supported image and start compression. ResizeFox evaluates several quality settings to use the available 500KB efficiently. When a very large source cannot meet the limit through quality adjustment alone, the tool also scales its dimensions." },
+      { heading: "Useful for Product Photos and Email", body: "Half a megabyte is often enough for product shots, property photos, portfolio previews and email attachments that need visible detail without the weight of an original camera file. A lighter asset can upload more quickly and consume less recipient bandwidth." },
+      { heading: "Choose Quality Based on How the Image Will Be Seen", body: "Inspect fine lines, text and faces after downloading. A 500KB copy may look excellent at normal webpage size but is not a replacement for a full-resolution original intended for printing or extensive editing. Keep the source file as your master copy." },
+    ]}
+    faqHeading="500KB Image FAQ"
+    faqs={[
+      { question: "Will the download exceed 500KB?", answer: "The compressor looks for a result at or below the target. Its exact size varies with the source image and browser encoding." },
+      { question: "Is 500KB suitable for an email attachment?", answer: "Usually, yes. It is substantially lighter than many camera originals, though sending several images will increase the total message size." },
+      { question: "Can I use ResizeFox on a phone?", answer: "Yes. Use a modern mobile browser and choose an image available on your device." },
+    ]}
+  />;
 }

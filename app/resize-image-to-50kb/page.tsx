@@ -1,77 +1,29 @@
 import type { Metadata } from "next";
-import Image100KBTool from "../resize-image-to-100kb/Image100KBTool";
+import ImageSizeSeoPage from "../ImageSizeSeoPage";
 
 export const metadata: Metadata = {
-  title: "Resize Image to 50KB Online Free",
+  title: "Reduce Image Size to 50KB Online",
   description:
-    "Resize and compress an image to 50KB online for free. Fast, private and easy-to-use JPG, PNG and WebP image compressor.",
-  // 50KB
-alternates: {
-  canonical: "/resize-image-to-50kb",
-},
+    "Reduce JPG, PNG and WebP images to 50KB online for forms, ID photos and lightweight uploads. Free to use with private on-device compression.",
+  alternates: { canonical: "/resize-image-to-50kb" },
 };
 
 export default function ResizeImageTo50KB() {
-  return (
-    <main>
-      <section
-        style={{
-          maxWidth: "900px",
-          margin: "0 auto",
-          padding: "80px 20px",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            color: "#ff6600",
-            fontWeight: 700,
-            marginBottom: "16px",
-          }}
-        >
-          Free • Private • No Signup
-        </p>
-
-        <h1
-          style={{
-            fontSize: "48px",
-            lineHeight: 1.1,
-            marginBottom: "20px",
-          }}
-        >
-          Resize Image to 50KB Online
-        </h1>
-
-        <p
-          style={{
-            fontSize: "20px",
-            lineHeight: 1.6,
-            marginBottom: "40px",
-          }}
-        >
-          Compress your JPG, PNG or WebP image to approximately 50KB for free.
-          Your image is processed directly in your browser.
-        </p>
-
-        <Image100KBTool targetKB={50} />
-
-        <section style={{ textAlign: "left", marginTop: "60px" }}>
-          <h2>How to Resize an Image to 50KB</h2>
-
-          <p>
-            Upload your image, choose a target size of 50KB and ResizeFox will
-            reduce image quality and dimensions when needed to reach the target.
-          </p>
-
-          <h2 style={{ marginTop: "35px" }}>Why Compress Images to 50KB?</h2>
-
-          <p>
-            Smaller images are useful for forms, websites, profile photos and
-            services that limit upload file size. ResizeFox processes everything
-            directly in your browser.
-          </p>
-        </section>
-      </section>
-    </main>
-  );
+  return <ImageSizeSeoPage
+    badge="Fast • Local • Account-Free"
+    heading="Reduce Image Size to 50KB"
+    intro="Prepare a lightweight image for document portals, profile forms or mobile sharing. Upload a JPG, PNG or WebP file and compress it toward 50KB without installing software."
+    targetKB={50}
+    sections={[
+      { heading: "Three Steps to a 50KB Image", body: "Choose your source image, start compression, then download the optimized result. ResizeFox searches for a suitable quality level and only scales down the dimensions if the original cannot fit within the target at its current resolution." },
+      { heading: "A Practical Size for Photos and Documents", body: "Fifty kilobytes can work well for passport-style photos, student records, scanned form attachments and compact previews. It offers more room for facial detail and text than a 20KB target while keeping uploads quick on limited connections." },
+      { heading: "Check the Result Before Submitting", body: "Open the downloaded image and confirm that important text, faces and edges remain clear. A portal may specify pixel dimensions or an aspect ratio in addition to its 50KB file-size rule, so check those requirements separately." },
+    ]}
+    faqHeading="Questions About 50KB Images"
+    faqs={[
+      { question: "Can I use the tool for an ID or application photo?", answer: "Yes, provided the downloaded file also meets the portal's required dimensions, crop and accepted file format." },
+      { question: "Which input formats can I choose?", answer: "You can select a JPG, PNG or WebP image. The optimized download is produced as JPG, except that WebP input remains WebP." },
+      { question: "Do I need to create a ResizeFox account?", answer: "No. The 50KB tool is free to use and does not require signup." },
+    ]}
+  />;
 }

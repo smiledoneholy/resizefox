@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image100KBTool from "./Image100KBTool";
 
 export const metadata: Metadata = {
-  title: "Compress Image to 100KB Online Free | ResizeFox",
+  title: "Compress Image to 100KB Online Free",
   description:
     "Compress and resize JPG, PNG and WebP images to 100KB online for free. Fast, private browser-based image compression with no signup required.",
   alternates: {
