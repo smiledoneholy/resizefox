@@ -195,7 +195,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
         >
           <div className="text-4xl">🖼️</div>
 
-          <p className="mt-4 text-xl font-bold">
+          <p className="mt-4 text-xl font-bold text-slate-900">
             Upload your image
           </p>
 
