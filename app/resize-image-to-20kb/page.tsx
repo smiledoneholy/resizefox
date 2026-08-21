@@ -13,6 +13,7 @@ export default function ResizeImageTo20KB() {
     badge="Free • Private • No Signup"
     heading="Compress an Image to 20KB Online"
     intro="Make a JPG, PNG or WebP image small enough for a strict 20KB upload limit. ResizeFox works on your device and does not send the image to a server."
+    path="/resize-image-to-20kb"
     targetKB={20}
     sections={[
       { heading: "How the 20KB Compressor Works", body: "Select an image and start the compressor. Because 20KB is an unusually small target, ResizeFox tests lower image quality first and reduces the pixel dimensions when quality changes alone are not enough. You can review the final file size before downloading." },

@@ -13,6 +13,7 @@ export default function ResizeImageTo1MB() {
     badge="Private • High Detail • Free"
     heading="Compress an Image Under 1MB"
     intro="Bring a large photo below a common 1MB upload limit while preserving more resolution than smaller compression targets. Nothing needs to be installed or transferred to our servers."
+    path="/resize-image-to-1mb"
     targetKB={1024}
     sections={[
       { heading: "Turn a Large Photo Into a 1MB Copy", body: "Add a JPG, PNG or WebP image and let ResizeFox seek the highest usable quality within 1,024KB. Large camera images are tested at different quality levels, with dimension reduction available when the original resolution is too demanding for the limit." },

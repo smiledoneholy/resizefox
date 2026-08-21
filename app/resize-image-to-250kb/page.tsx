@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image100KBTool from "../resize-image-to-100kb/Image100KBTool";
+import { WebApplicationJsonLd } from "../StructuredData";
 
 export const metadata: Metadata = {
   title: "Compress Image to 250KB Online Free",
@@ -13,6 +14,11 @@ export const metadata: Metadata = {
 export default function ResizeImageTo250KBPage() {
   return (
     <main className="min-h-screen bg-[#080808] text-white">
+      <WebApplicationJsonLd
+        name="Resize Image to 250KB Online"
+        url="https://resizefox.com/resize-image-to-250kb"
+        description="Compress your JPG, PNG or WebP image to approximately 250KB for free. Your image is processed directly in your browser."
+      />
       <section className="mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:px-8 sm:pt-20">
         <p className="font-bold text-orange-500">
           Free • Private • No Signup

@@ -1,4 +1,5 @@
 import Image100KBTool from "./resize-image-to-100kb/Image100KBTool";
+import { WebApplicationJsonLd } from "./StructuredData";
 
 type Section = {
   heading: string;
@@ -14,6 +15,7 @@ type ImageSizeSeoPageProps = {
   badge: string;
   heading: string;
   intro: string;
+  path: string;
   targetKB: number;
   sections: Section[];
   faqHeading: string;
@@ -24,6 +26,7 @@ export default function ImageSizeSeoPage({
   badge,
   heading,
   intro,
+  path,
   targetKB,
   sections,
   faqHeading,
@@ -31,6 +34,11 @@ export default function ImageSizeSeoPage({
 }: ImageSizeSeoPageProps) {
   return (
     <main className="min-h-screen bg-[#080808] text-white">
+      <WebApplicationJsonLd
+        name={heading}
+        url={`https://resizefox.com${path}`}
+        description={intro}
+      />
       <section className="mx-auto max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
         <p className="font-bold text-orange-500">{badge}</p>
         <h1 className="mt-4 text-4xl font-black sm:text-6xl">{heading}</h1>

@@ -13,6 +13,7 @@ export default function ResizeImageTo200KB() {
     badge="Free • Browser-Based • Simple"
     heading="Resize an Image to 200KB"
     intro="Find a useful balance between image clarity and a smaller download. ResizeFox compresses your file toward 200KB for faster uploads and everyday online use."
+    path="/resize-image-to-200kb"
     targetKB={200}
     sections={[
       { heading: "Compress to 200KB Without Guesswork", body: "Upload an image and let the tool compare multiple compression levels automatically. If the full-resolution version remains too large, it progressively reduces the dimensions until it can create a result within the 200KB allowance." },

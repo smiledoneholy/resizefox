@@ -15,6 +15,7 @@ export default function ResizeImageTo500KB() {
     badge="No Upload • No Software • Free"
     heading="Compress an Image to 500KB"
     intro="Keep useful visual detail while reducing a heavy image for the web, email or an online listing. The entire optimization runs privately in your browser."
+    path="/resize-image-to-500kb"
     targetKB={500}
     sections={[
       { heading: "A Simple 500KB Workflow", body: "Choose a supported image and start compression. ResizeFox evaluates several quality settings to use the available 500KB efficiently. When a very large source cannot meet the limit through quality adjustment alone, the tool also scales its dimensions." },

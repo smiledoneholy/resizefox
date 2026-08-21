@@ -13,6 +13,7 @@ export default function ResizeImageTo50KB() {
     badge="Fast • Local • Account-Free"
     heading="Reduce Image Size to 50KB"
     intro="Prepare a lightweight image for document portals, profile forms or mobile sharing. Upload a JPG, PNG or WebP file and compress it toward 50KB without installing software."
+    path="/resize-image-to-50kb"
     targetKB={50}
     sections={[
       { heading: "Three Steps to a 50KB Image", body: "Choose your source image, start compression, then download the optimized result. ResizeFox searches for a suitable quality level and only scales down the dimensions if the original cannot fit within the target at its current resolution." },

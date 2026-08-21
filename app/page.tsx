@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useRef, useState } from "react";
 import Link from "next/link";
+import { WebSiteJsonLd } from "./StructuredData";
 
 type Mode = "resize" | "compress" | "convert";
 
@@ -316,6 +317,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] text-slate-950">
+      <WebSiteJsonLd />
       {/* HEADER */}
 
       <header className="border-b border-slate-200 bg-white">
