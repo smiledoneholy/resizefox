@@ -1,26 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact the ResizeFox team.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-          <Link href="/" className="text-xl font-extrabold">
-            🦊 Resize<span className="text-orange-500">Fox</span>
-          </Link>
-
-          <Link href="/" className="text-sm font-semibold text-slate-600">
-            Back to Home
-          </Link>
-        </div>
-      </header>
-
       <section className="mx-auto max-w-3xl px-6 py-16">
         <p className="font-bold text-orange-500">CONTACT</p>
 

@@ -1,26 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: "Terms and conditions for using ResizeFox.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-          <Link href="/" className="text-xl font-extrabold">
-            🦊 Resize<span className="text-orange-500">Fox</span>
-          </Link>
-
-          <Link href="/" className="text-sm font-semibold text-slate-600">
-            Back to Home
-          </Link>
-        </div>
-      </header>
-
       <article className="mx-auto max-w-3xl px-6 py-16">
         <h1 className="text-4xl font-black">Terms of Use</h1>
 

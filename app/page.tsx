@@ -318,54 +318,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#fafafa] text-slate-950">
       <WebSiteJsonLd />
-      {/* HEADER */}
-
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2"
-          >
-            <span className="text-3xl">🦊</span>
-
-            <span className="text-xl font-extrabold tracking-tight">
-              Resize
-              <span className="text-orange-500">Fox</span>
-            </span>
-          </button>
-
-          <nav className="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex">
-            <button
-              onClick={() => changeMode("resize")}
-              className="transition hover:text-slate-950"
-            >
-              Resize
-            </button>
-
-            <button
-              onClick={() => changeMode("compress")}
-              className="transition hover:text-slate-950"
-            >
-              Compress
-            </button>
-
-            <button
-              onClick={() => changeMode("convert")}
-              className="transition hover:text-slate-950"
-            >
-              Convert
-            </button>
-          </nav>
-
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-orange-600"
-          >
-            Upload Image
-          </button>
-        </div>
-      </header>
-
       {/* HERO */}
 
       <section className="mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:px-8 sm:pt-20">
@@ -394,7 +346,7 @@ export default function Home() {
         </div>
       </section>
       {/* POPULAR IMAGE SIZE TOOLS */}
-<section className="mx-auto max-w-5xl px-5 pb-6 sm:px-8">
+<section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-6 sm:px-8">
   <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
     <div className="text-center">
       <h2 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
@@ -1019,35 +971,6 @@ export default function Home() {
   </div>
 </section>
 
-{/* FOOTER */}
-      <footer className="border-t border-slate-200 bg-slate-950 text-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <div className="flex items-center gap-2 text-xl font-extrabold">
-              <span>🦊</span>
-              ResizeFox
-            </div>
-
-            <p className="mt-2 text-sm text-slate-400">
-              Fast, free and private image tools.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-5 text-sm font-semibold text-slate-400">
-  <a href="/privacy" className="transition hover:text-white">
-    Privacy
-  </a>
-
-  <a href="/terms" className="transition hover:text-white">
-    Terms
-  </a>
-
-  <a href="/contact" className="transition hover:text-white">
-    Contact
-  </a>
-</div>
-        </div>
-      </footer>
     </main>
   );
 }
