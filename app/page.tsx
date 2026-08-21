@@ -944,7 +944,74 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
+      {/* POPULAR IMAGE COMPRESSION TOOLS */}
+<section className="border-t border-slate-200 bg-white">
+  <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+    <div className="text-center">
+      <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+        Popular Image Compression Tools
+      </h2>
 
+      <p className="mx-auto mt-3 max-w-2xl text-base text-slate-600">
+        Quickly compress your images to a specific file size. Free, private
+        and processed directly in your browser.
+      </p>
+    </div>
+
+    <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <a
+        href="/resize-image-to-20kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 20KB
+      </a>
+
+      <a
+        href="/resize-image-to-50kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 50KB
+      </a>
+
+      <a
+        href="/resize-image-to-100kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 100KB
+      </a>
+
+      <a
+        href="/resize-image-to-200kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 200KB
+      </a>
+
+      <a
+        href="/resize-image-to-250kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 250KB
+      </a>
+
+      <a
+        href="/resize-image-to-500kb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 500KB
+      </a>
+
+      <a
+        href="/resize-image-to-1mb"
+        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center font-bold text-slate-900 transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        Compress to 1MB
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* FOOTER */}
       <footer className="border-t border-slate-200 bg-slate-950 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 sm:px-8 md:flex-row md:items-center md:justify-between">
           <div>
