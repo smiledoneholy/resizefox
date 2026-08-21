@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useRef, useState } from "react";
+import Link from "next/link";
 
 type Mode = "resize" | "compress" | "convert";
 
@@ -390,7 +391,42 @@ export default function Home() {
           <span>✓ Free to use</span>
         </div>
       </section>
+      {/* POPULAR IMAGE SIZE TOOLS */}
+<section className="mx-auto max-w-5xl px-5 pb-6 sm:px-8">
+  <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="text-center">
+      <h2 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+        Popular Image Size Tools
+      </h2>
 
+      <p className="mx-auto mt-3 max-w-2xl text-slate-600">
+        Quickly compress your image to a specific file size.
+      </p>
+    </div>
+
+    <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+      <Link href="/resize-image-to-20kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        20KB
+      </Link>
+
+      <Link href="/resize-image-to-50kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        50KB
+      </Link>
+
+      <Link href="/resize-image-to-100kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        100KB
+      </Link>
+
+      <Link href="/resize-image-to-200kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        200KB
+      </Link>
+
+      <Link href="/resize-image-to-500kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        500KB
+      </Link>
+    </div>
+  </div>
+</section>
       {/* TOOL */}
 
       <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
