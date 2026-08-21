@@ -404,7 +404,7 @@ export default function Home() {
       </p>
     </div>
 
-    <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+    <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       <Link href="/resize-image-to-20kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
         20KB
       </Link>
@@ -420,16 +420,16 @@ export default function Home() {
       <Link href="/resize-image-to-200kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
         200KB
       </Link>
-
-      <Link href="/resize-image-to-500kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        500KB
-      </Link>
       <Link
       href="/resize-image-to-250kb"
        className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-400 hover:bg-orange-50"
       >
         250KB
       </Link>
+      <Link href="/resize-image-to-500kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
+        500KB
+      </Link>
+      
       <Link
       href="/resize-image-to-1mb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50"
 >      1MB
