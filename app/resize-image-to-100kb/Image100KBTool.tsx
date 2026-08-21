@@ -128,7 +128,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
 
         if (!bestBlob) {
           setError(
-            `We could not reach ${targetKB}KB for this image. Try a smaller source image.`
+            `We could not reach ${targetLabel} for this image. Try a smaller source image.`
           );
           setProcessing(false);
           return;
@@ -164,7 +164,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
     const link = document.createElement("a");
 
     link.href = resultUrl;
-    link.download = `resizefox-${targetKB}kb.${extension}`;
+    link.download = `resizefox-${targetLabel}.${extension}`;
 
     document.body.appendChild(link);
     link.click();
@@ -185,7 +185,8 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
       inputRef.current.value = "";
     }
   }
-
+  const targetLabel =
+  targetKB === 1024 ? "1MB" : `${targetKB}KB`;
   return (
     <div className="mt-10 rounded-3xl border border-orange-200 bg-white p-6 text-slate-900 shadow-sm sm:p-8">
       {!file ? (
@@ -227,25 +228,25 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
             </p>
 
             <h2 className="mt-2 text-3xl font-black">
-              Compress to {targetKB}KB
+              Compress to {targetLabel}
             </h2>
 
             <p className="mt-3 leading-7 text-slate-600">
               ResizeFox will automatically adjust image quality and,
-              when needed, image dimensions to get the file under {targetKB}KB.
+              when needed, image dimensions to get the file under {targetLabel}.
             </p>
 
             {!resultBlob && (
-        <button
-             onClick={compressToTargetKB}
-            disabled={processing}
-            className="mt-7 rounded-xl bg-orange-500 px-6 py-4 font-extrabold text-white transition hover:bg-orange-600 disabled:opacity-50"
-            >
-                {processing
-                 ? "Compressing..."
-                : `Compress Image to ${targetKB}KB`}
-        </button>
-)}    
+            <button
+               onClick={compressToTargetKB}
+               disabled={processing}
+               className="mt-7 rounded-xl bg-orange-500 px-6 py-4 font-extrabold text-white transition hover:bg-orange-600"
+>
+               {processing
+                ? "Compressing..."
+               : <>Compress Image to {targetLabel}</>}
+              </button>
+            )}    
             {resultBlob && (
               <div className="mt-7 rounded-2xl bg-green-50 p-5">
                 <p className="font-extrabold text-green-800">
