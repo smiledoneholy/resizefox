@@ -425,6 +425,12 @@ export default function Home() {
         500KB
       </Link>
       <Link
+      href="/resize-image-to-250kb"
+       className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-400 hover:bg-orange-50"
+      >
+        250KB
+      </Link>
+      <Link
       href="/resize-image-to-1mb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50"
 >      1MB
       </Link>
