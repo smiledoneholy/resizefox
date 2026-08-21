@@ -187,7 +187,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
   }
 
   return (
-    <div className="mt-10 rounded-3xl border border-orange-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="mt-10 rounded-3xl border border-orange-200 bg-white p-6 text-slate-900 shadow-sm sm:p-8">
       {!file ? (
         <button
           onClick={() => inputRef.current?.click()}
