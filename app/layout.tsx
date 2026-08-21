@@ -64,6 +64,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167855203513011"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <SiteHeader />
         {children}
