@@ -4,10 +4,20 @@ import { ChangeEvent, useRef, useState } from "react";
 
 type Mode = "resize" | "compress" | "convert";
 
-export default function ImageTool() {
+type ImageToolProps = {
+  initialMode?: Mode;
+  compressOnly?: boolean;
+  previewResult?: boolean;
+};
+
+export default function ImageTool({
+  initialMode = "resize",
+  compressOnly = false,
+  previewResult = false,
+}: ImageToolProps = {}) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const [mode, setMode] = useState<Mode>("resize");
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
 
@@ -347,25 +357,27 @@ export default function ImageTool() {
     <div>
       {/* TABS */}
 
-      <div className="mb-6 flex justify-center">
-        <div className="grid w-full max-w-xl grid-cols-3 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
-          {(["resize", "compress", "convert"] as Mode[]).map(
-            (item) => (
-              <button
-                key={item}
-                onClick={() => changeMode(item)}
-                className={`rounded-xl px-4 py-3 text-sm font-bold capitalize transition ${
-                  mode === item
-                    ? "bg-slate-950 text-white"
-                    : "text-slate-500 hover:bg-slate-50"
-                }`}
-              >
-                {item}
-              </button>
-            )
-          )}
+      {!compressOnly && (
+        <div className="mb-6 flex justify-center">
+          <div className="grid w-full max-w-xl grid-cols-3 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
+            {(["resize", "compress", "convert"] as Mode[]).map(
+              (item) => (
+                <button
+                  key={item}
+                  onClick={() => changeMode(item)}
+                  className={`rounded-xl px-4 py-3 text-sm font-bold capitalize transition ${
+                    mode === item
+                      ? "bg-slate-950 text-white"
+                      : "text-slate-500 hover:bg-slate-50"
+                  }`}
+                >
+                  {item}
+                </button>
+              )
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* EDITOR */}
 
@@ -375,8 +387,12 @@ export default function ImageTool() {
         <div className="flex flex-col justify-center bg-slate-50 p-6 sm:p-9">
           <div className="flex min-h-[350px] items-center justify-center rounded-2xl bg-white p-4">
             <img
-              src={preview}
-              alt="Image preview"
+              src={previewResult && resultUrl ? resultUrl : preview}
+              alt={
+                previewResult && resultUrl
+                  ? "Compressed image preview"
+                  : "Image preview"
+              }
               className="max-h-[420px] max-w-full rounded-xl object-contain"
             />
           </div>
