@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   google: "K5EcWw5UpwswHPyHgXkVzdUUTx7C-ulsY5rVIA3-Oy0",
 },
   other: {
-    "google-adsense-account": "ca-pub-3167855203513011",
+    "google-adsense-account": "ca-pub-7594630679770960",
   },
   keywords: [
     "image resizer",
@@ -67,7 +67,7 @@ export default function RootLayout({
       <head>
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167855203513011"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7594630679770960"
           crossOrigin="anonymous"
         />
       </head>
