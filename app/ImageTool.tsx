@@ -3,12 +3,16 @@
 import { ChangeEvent, useRef, useState } from "react";
 
 type Mode = "resize" | "compress" | "convert";
+type OutputFormat = "image/jpeg" | "image/png" | "image/webp";
 
 type ImageToolProps = {
   initialMode?: Mode;
   compressOnly?: boolean;
   resizeOnly?: boolean;
   previewResult?: boolean;
+  acceptedTypes?: string;
+  uploadHint?: string;
+  fixedFormat?: OutputFormat;
 };
 
 export default function ImageTool({
@@ -16,6 +20,9 @@ export default function ImageTool({
   compressOnly = false,
   resizeOnly = false,
   previewResult = false,
+  acceptedTypes = "image/jpeg,image/png,image/webp",
+  uploadHint = "JPG, PNG and WEBP supported",
+  fixedFormat,
 }: ImageToolProps = {}) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -29,7 +36,9 @@ export default function ImageTool({
   const [originalHeight, setOriginalHeight] = useState(0);
 
   const [keepRatio, setKeepRatio] = useState(true);
-  const [format, setFormat] = useState("image/jpeg");
+  const [format, setFormat] = useState<OutputFormat>(
+    fixedFormat ?? "image/jpeg"
+  );
   const [quality, setQuality] = useState(90);
   const [targetKB, setTargetKB] = useState(500);
 
@@ -38,7 +47,9 @@ export default function ImageTool({
   const [processing, setProcessing] = useState(false);
 
   function loadFile(selectedFile: File) {
-    if (!selectedFile.type.startsWith("image/")) return;
+    const allowedTypes = acceptedTypes.split(",").map((type) => type.trim());
+
+    if (!allowedTypes.includes(selectedFile.type)) return;
 
     if (preview) URL.revokeObjectURL(preview);
     if (resultUrl) URL.revokeObjectURL(resultUrl);
@@ -352,7 +363,7 @@ export default function ImageTool({
       </button>
 
       <p className="mt-5 text-sm text-slate-400">
-        JPG, PNG and WEBP supported
+        {uploadHint}
       </p>
     </div>
   ) : (
@@ -509,24 +520,37 @@ export default function ImageTool({
 
           {/* FORMAT */}
 
-          <div className="mt-7">
-            <label className="text-sm font-bold">
-              Output format
-            </label>
+          {fixedFormat ? (
+            <div className="mt-7">
+              <p className="text-sm font-bold">Output format</p>
+              <div className="mt-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 font-semibold">
+                {fixedFormat === "image/jpeg"
+                  ? "JPG"
+                  : fixedFormat === "image/png"
+                  ? "PNG"
+                  : "WEBP"}
+              </div>
+            </div>
+          ) : (
+            <div className="mt-7">
+              <label className="text-sm font-bold">
+                Output format
+              </label>
 
-            <select
-              value={format}
-              onChange={(e) => {
-                setFormat(e.target.value);
-                resetResult();
-              }}
-              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 outline-none transition focus:border-orange-400"
-            >
-              <option value="image/jpeg">JPG</option>
-              <option value="image/png">PNG</option>
-              <option value="image/webp">WEBP</option>
-            </select>
-          </div>
+              <select
+                value={format}
+                onChange={(e) => {
+                  setFormat(e.target.value as OutputFormat);
+                  resetResult();
+                }}
+                className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 outline-none transition focus:border-orange-400"
+              >
+                <option value="image/jpeg">JPG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp">WEBP</option>
+              </select>
+            </div>
+          )}
 
           {/* QUALITY */}
 
@@ -714,7 +738,7 @@ export default function ImageTool({
   <input
     ref={fileInputRef}
     type="file"
-    accept="image/jpeg,image/png,image/webp"
+    accept={acceptedTypes}
     onChange={handleFile}
     className="hidden"
   />
