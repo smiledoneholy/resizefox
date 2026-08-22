@@ -7,12 +7,14 @@ type Mode = "resize" | "compress" | "convert";
 type ImageToolProps = {
   initialMode?: Mode;
   compressOnly?: boolean;
+  resizeOnly?: boolean;
   previewResult?: boolean;
 };
 
 export default function ImageTool({
   initialMode = "resize",
   compressOnly = false,
+  resizeOnly = false,
   previewResult = false,
 }: ImageToolProps = {}) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -357,7 +359,7 @@ export default function ImageTool({
     <div>
       {/* TABS */}
 
-      {!compressOnly && (
+      {!compressOnly && !resizeOnly && (
         <div className="mb-6 flex justify-center">
           <div className="grid w-full max-w-xl grid-cols-3 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
             {(["resize", "compress", "convert"] as Mode[]).map(
@@ -675,6 +677,12 @@ export default function ImageTool({
                   </p>
                 </div>
               </div>
+
+              {mode === "resize" && (
+                <div className="mt-4 rounded-xl bg-white px-4 py-3 text-sm text-slate-700">
+                  Result dimensions: <strong>{width} × {height}px</strong>
+                </div>
+              )}
 
               {resultBlob.size < file.size && (
                 <div className="mt-4 rounded-xl bg-white px-4 py-3 text-sm font-bold text-green-700">
