@@ -702,7 +702,7 @@ export default function ImageTool({
                 </div>
               </div>
 
-              {mode === "resize" && (
+              {(mode === "resize" || mode === "compress") && (
                 <div className="mt-4 rounded-xl bg-white px-4 py-3 text-sm text-slate-700">
                   Result dimensions: <strong>{width} × {height}px</strong>
                 </div>
