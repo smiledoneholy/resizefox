@@ -195,6 +195,23 @@ export default function CompressJpgPage() {
               </div>
             ))}
           </div>
+          <p className="mt-6 leading-7 text-slate-600">
+            For a complete attachment workflow, see how to{" "}
+            <Link
+              href="/compress-image-for-email"
+              className="font-bold text-orange-600 underline"
+            >
+              prepare images for email
+            </Link>.
+            {" "}Product sellers can also review the{" "}
+            <Link
+              href="/etsy-image-resizer"
+              className="font-bold text-orange-600 underline"
+            >
+              Etsy listing image workflow
+            </Link>{" "}
+            before exporting product photos.
+          </p>
         </div>
       </section>
 

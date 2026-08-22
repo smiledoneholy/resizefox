@@ -164,6 +164,17 @@ export default function ResizeImagePage() {
               </div>
             ))}
           </div>
+          <p className="mt-6 leading-7 text-slate-600">
+            Marketplace requirements need more than a generic preset. Sellers can use
+            the{" "}
+            <Link
+              href="/etsy-image-resizer"
+              className="font-bold text-orange-600 underline"
+            >
+              Etsy listing photo guide
+            </Link>{" "}
+            for current dimension, thumbnail and upload considerations.
+          </p>
         </div>
 
         <div className="mt-14">

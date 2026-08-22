@@ -122,7 +122,11 @@ export default function CompressImagePage() {
               <p className="mt-3 leading-7 text-slate-600">
                 Usually the practical choice for photographs. JPG can become much smaller
                 as quality is reduced, but repeated compression can introduce blockiness
-                around edges and fine detail.
+                around edges and fine detail. For a photo-focused workflow with JPG input
+                and output, use the{" "}
+                <Link href="/compress-jpg" className="font-bold text-orange-600 underline">
+                  dedicated JPG compressor
+                </Link>.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-6">
@@ -193,6 +197,16 @@ export default function CompressImagePage() {
               </div>
             ))}
           </div>
+          <p className="mt-6 leading-7 text-slate-600">
+            Preparing photos specifically as attachments? The{" "}
+            <Link
+              href="/compress-image-for-email"
+              className="font-bold text-orange-600 underline"
+            >
+              email image preparation guide
+            </Link>{" "}
+            explains combined attachment sizes, dimensions and format choices.
+          </p>
         </div>
       </section>
 

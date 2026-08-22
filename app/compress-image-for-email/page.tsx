@@ -174,6 +174,17 @@ export default function CompressImageForEmailPage() {
               </p>
             </div>
           </div>
+          <p className="mt-6 leading-7 text-slate-600">
+            If the files are product photos intended for a marketplace listing,
+            prepare the upload copy with the{" "}
+            <Link
+              href="/etsy-image-resizer"
+              className="font-bold text-orange-600 underline"
+            >
+              Etsy listing image workflow
+            </Link>{" "}
+            rather than relying only on an email-size target.
+          </p>
         </div>
 
         <div className="mt-14">
