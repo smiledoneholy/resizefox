@@ -1,4 +1,5 @@
 import Image100KBTool from "./resize-image-to-100kb/Image100KBTool";
+import Link from "next/link";
 import { WebApplicationJsonLd } from "./StructuredData";
 
 type Section = {
@@ -47,6 +48,7 @@ export default function ImageSizeSeoPage({
         </p>
 
         <Image100KBTool targetKB={targetKB} />
+        <p className="mt-6 text-slate-300">Need help with a rejected upload? <Link href="/blog/compress-image-upload-limit" className="text-orange-400 underline">Follow the file-size tutorial</Link> or <Link href="/blog/jpg-png-webp-file-extensions" className="text-orange-400 underline">compare image formats</Link>.</p>
 
         <section className="mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-700 p-6 text-left">
           <h2 className="text-2xl font-black">Check your file before submitting it</h2>

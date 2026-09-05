@@ -1,9 +1,12 @@
 import type { MetadataRoute } from "next";
+import { guides, published } from "./blog/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://resizefox.com";
 
   return [
+    { url: `${baseUrl}/blog`, lastModified: published, changeFrequency: "monthly", priority: 0.8 },
+    ...guides.map(guide => ({ url: `${baseUrl}/blog/${guide.slug}`, lastModified: published, changeFrequency: "monthly" as const, priority: 0.7 })),
     {
       url: baseUrl,
       lastModified: new Date(),

@@ -2,12 +2,14 @@ import Link from "next/link";
 
 const navigation = [
   { href: "/#image-tools", label: "Image Tools" },
+  { href: "/blog", label: "Tutorials" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 const footerLinks = [
   { href: "/", label: "Home" },
+  { href: "/blog", label: "Tutorials" },
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
@@ -27,7 +29,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Main navigation"
-          className="flex items-center gap-3 text-xs font-semibold text-slate-600 sm:gap-6 sm:text-sm"
+          className="flex flex-wrap justify-end items-center gap-3 text-xs font-semibold text-slate-600 sm:gap-6 sm:text-sm"
         >
           {navigation.map((item) => (
             <Link

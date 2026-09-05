@@ -54,6 +54,17 @@ export default function Home() {
       <ImageTool />
 
       {/* BENEFITS */}
+      <section className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
+        <p className="text-sm font-bold uppercase tracking-wider text-orange-600">Learn before you export</p>
+        <h2 className="mt-3 text-3xl font-black">Practical image tutorials</h2>
+        <p className="mt-4 max-w-2xl leading-7 text-slate-600">Prepare an Instagram post, artwork for Reels or TikTok, or a correctly sized document image. Understand dimensions, file formats and quality before changing your file.</p>
+        <div className="mt-6 flex flex-wrap gap-4">
+          <Link href="/blog/instagram-post-image-size" className="font-bold text-orange-700 underline">Instagram image sizes</Link>
+          <Link href="/blog/passport-photo-dimensions-pixels" className="font-bold text-orange-700 underline">Passport photo dimensions</Link>
+          <Link href="/blog/jpg-png-webp-file-extensions" className="font-bold text-orange-700 underline">JPG, PNG or WebP?</Link>
+          <Link href="/blog" className="font-bold text-orange-700 underline">All tutorials →</Link>
+        </div>
+      </section>
 
       <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-6 px-5 py-16 sm:px-8 md:grid-cols-3">
