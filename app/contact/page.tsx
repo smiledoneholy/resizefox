@@ -20,7 +20,7 @@ export default function ContactPage() {
 
         <p className="mt-5 max-w-2xl leading-7 text-slate-600">
           Have a question, found a problem or have an idea for a new
-          ResizeFox feature? We'd be happy to hear from you.
+          ResizeFox feature? We&apos;d be happy to hear from you.
         </p>
 
         <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">

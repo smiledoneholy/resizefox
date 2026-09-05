@@ -27,7 +27,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
 
     if (!selectedFile) return;
 
-    if (!selectedFile.type.startsWith("image/")) {
+    if (!["image/jpeg", "image/png", "image/webp"].includes(selectedFile.type)) {
       setError("Please choose a valid image file.");
       return;
     }
@@ -65,6 +65,14 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
       const img = new Image();
 
       img.onload = async () => {
+        if (file.size <= targetKB * 1024) {
+          if (resultUrl) URL.revokeObjectURL(resultUrl);
+          setResultBlob(file);
+          setResultUrl(URL.createObjectURL(file));
+          setProcessing(false);
+          return;
+        }
+
         let currentWidth = img.width;
         let currentHeight = img.height;
 
@@ -159,7 +167,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
     if (!resultBlob || !resultUrl) return;
 
     const extension =
-      resultBlob.type === "image/webp" ? "webp" : "jpg";
+      resultBlob.type === "image/png" ? "png" : resultBlob.type === "image/webp" ? "webp" : "jpg";
 
     const link = document.createElement("a");
 
@@ -203,6 +211,11 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
           <p className="mt-2 text-sm text-slate-500">
             JPG, PNG or WebP
           </p>
+          <p className="mt-3 text-sm text-slate-600">
+            Files already within the limit stay unchanged. When compression is
+            needed, PNG becomes JPG with a white background. WebP stays WebP.
+            Pixel dimensions may decrease to meet the limit.
+          </p>
 
           <span className="mt-5 inline-block rounded-xl bg-orange-500 px-6 py-3 font-bold text-white">
             Choose Image
@@ -232,6 +245,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
             </h2>
 
             <p className="mt-3 leading-7 text-slate-600">
+              Files already within the limit are kept unchanged. Otherwise,
               ResizeFox will automatically adjust image quality and,
               when needed, image dimensions to get the file under {targetLabel}.
             </p>
@@ -250,8 +264,23 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
             {resultBlob && (
               <div className="mt-7 rounded-2xl bg-green-50 p-5">
                 <p className="font-extrabold text-green-800">
-                  ✅ Image ready
+                  {resultBlob === file ? "✅ Already within the limit — original preserved" : "✅ Image ready"}
                 </p>
+                <img
+                  src={resultUrl}
+                  alt="Result preview — inspect detail and background before downloading"
+                  className="mt-4 max-h-64 w-full rounded-xl bg-white object-contain"
+                />
+                <p className="mt-3 text-sm text-slate-600">
+                  Output: {resultBlob.type === "image/png" ? "PNG" : resultBlob.type === "image/webp" ? "WebP" : "JPG"}.
+                  Check text, faces and fine detail in this preview before downloading.
+                </p>
+                {resultBlob === file && (
+                  <p className="mt-3 text-sm text-slate-600">
+                    No compression was necessary. The download preserves the original
+                    bytes, format, dimensions and transparency.
+                  </p>
+                )}
 
                 <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
                   <div>

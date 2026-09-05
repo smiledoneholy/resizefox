@@ -33,52 +33,22 @@ export default function Home() {
           <span>✓ Free to use</span>
         </div>
       </section>
-      {/* POPULAR IMAGE SIZE TOOLS */}
-<section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-6 sm:px-8">
-  <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-    <div className="text-center">
-      <h2 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
-        Popular Image Size Tools
-      </h2>
-
-      <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-        Quickly compress your image to a specific file size.
-      </p>
-    </div>
-
-    <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-      <Link href="/resize-image-to-20kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        20KB
-      </Link>
-
-      <Link href="/resize-image-to-50kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        50KB
-      </Link>
-
-      <Link href="/resize-image-to-100kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        100KB
-      </Link>
-
-      <Link href="/resize-image-to-200kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        200KB
-      </Link>
-      <Link
-      href="/resize-image-to-250kb"
-       className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-400 hover:bg-orange-50"
-      >
-        250KB
-      </Link>
-      <Link href="/resize-image-to-500kb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50">
-        500KB
-      </Link>
-      
-      <Link
-      href="/resize-image-to-1mb" className="rounded-xl border border-orange-200 px-4 py-4 text-center font-bold transition hover:border-orange-500 hover:bg-orange-50"
->      1MB
-      </Link>
-    </div>
-  </div>
-</section>
+      <section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-10 sm:px-8">
+        <h2 className="text-center text-2xl font-black">Choose the tool for your task</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {[
+            ["/resize-image", "Change pixel dimensions", "Set width and height while keeping the image proportions."],
+            ["/compress-image", "Reduce file size", "Choose an upload limit and check whether the result meets it."],
+            ["/etsy-image-resizer", "Prepare Etsy product photos", "Follow listing photo guidance for dimensions, detail and thumbnails."],
+            ["/compress-image-for-email", "Prepare email attachments", "Balance readable images with the total size of your attachments."],
+          ].map(([href, title, description]) => (
+            <Link key={href} href={href} className="rounded-2xl border border-orange-200 bg-white p-6 transition hover:border-orange-500">
+              <h3 className="text-lg font-bold">{title}</h3>
+              <p className="mt-2 leading-7 text-slate-600">{description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
       {/* TOOL */}
 
       <ImageTool />

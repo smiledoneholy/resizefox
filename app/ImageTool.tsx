@@ -673,13 +673,23 @@ export default function ImageTool({
           {resultBlob && (
             <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-5">
               <div className="flex items-center gap-2">
-                <span>✅</span>
+                <span>{mode === "compress" && resultBlob.size > targetKB * 1024 ? "⚠️" : "✅"}</span>
 
                 <p className="font-extrabold text-green-900">
-                  Your image is ready
+                  {mode === "compress" && resultBlob.size > targetKB * 1024
+                    ? "Target size not reached"
+                    : "Your image is ready"}
                 </p>
               </div>
 
+              {mode === "compress" && resultBlob.size > targetKB * 1024 && (
+                <p role="status" className="mt-4 rounded-xl bg-amber-50 p-4 text-sm text-amber-900">
+                  This file exceeds your {targetKB} KB limit. Choose Change Settings
+                  and try JPG or WebP. If it is still too large, use the image
+                  resizer to reduce its pixel dimensions, then compress the smaller copy.
+                  The download below is the current result, not a file within your limit.
+                </p>
+              )}
               <div className="mt-5 grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs font-semibold text-slate-500">
