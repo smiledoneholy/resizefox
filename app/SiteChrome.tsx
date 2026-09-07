@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navigation = [
   { href: "/tools", label: "Image Tools" },
+  { href: "/tools#pdf-tools", label: "PDF Tools" },
   { href: "/blog", label: "Tutorials" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
