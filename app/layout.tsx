@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://resizefox.com"),
 
   title: {
-    default: "ResizeFox - Free Image Resizer & Compressor",
+    default: "ResizeFox - Free Image & PDF Tools",
     template: "%s | ResizeFox",
   },
 
   description:
-    "Resize, compress and convert JPG, PNG and WebP images online for free. Fast, private browser-based image tools with no signup required.",
+    "Edit JPG, PNG and WebP images and work with PDF documents online for free. Private browser-based tools with no signup required.",
    alternates: {
   canonical: "/",
 },
@@ -33,12 +33,15 @@ export const metadata: Metadata = {
     "WebP converter",
     "resize image free",
     "compress image to 500KB",
+    "PDF tools",
+    "merge PDF",
+    "images to PDF",
   ],
 
   openGraph: {
-    title: "ResizeFox - Free Image Resizer & Compressor",
+    title: "ResizeFox - Free Image & PDF Tools",
     description:
-      "Resize, compress and convert images online for free. Fast, private and no signup required.",
+      "Edit images and create, convert or organize PDF documents online. Private browser-based tools with no signup.",
     url: "https://resizefox.com",
     siteName: "ResizeFox",
     type: "website",
@@ -46,9 +49,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "ResizeFox - Free Image Resizer & Compressor",
+    title: "ResizeFox - Free Image & PDF Tools",
     description:
-      "Resize, compress and convert images online for free. Fast, private and no signup required.",
+      "Edit images and create, convert or organize PDF documents online. Private browser-based tools with no signup.",
   },
 
   robots: {

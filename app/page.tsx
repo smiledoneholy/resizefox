@@ -11,7 +11,7 @@ export default function Home() {
       <section className="mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:px-8 sm:pt-20">
         <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700">
           <span>⚡</span>
-          Free image tools. No signup required.
+          Free image &amp; PDF tools. No signup required.
         </div>
 
         <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
@@ -22,8 +22,9 @@ export default function Home() {
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-          Fast and private image tools that work directly in your
-          browser. Your images are never uploaded to our servers.
+          Fast and private tools that work directly in your browser. Edit
+          images or work with PDF documents without uploading your files to
+          our servers.
         </p>
 
         <div className="mt-7 flex flex-wrap justify-center gap-5 text-sm font-medium text-slate-600">
@@ -72,7 +73,7 @@ export default function Home() {
           <Link href="/blog/jpg-png-webp-file-extensions" className="font-bold text-orange-700 underline">JPG, PNG or WebP?</Link>
           <Link href="/blog" className="font-bold text-orange-700 underline">All tutorials →</Link>
         </div>
-        <div className="mt-6 text-center"><Link href="/tools" className="font-bold text-orange-600 underline">See all image tools and formats →</Link></div>
+        <div className="mt-6 flex flex-wrap justify-center gap-5 text-center"><Link href="/tools" className="font-bold text-orange-600 underline">See all image tools and formats →</Link><Link href="/tools#pdf-tools" className="font-bold text-orange-600 underline">Browse PDF tools →</Link></div>
       </section>
 
       <section className="border-y border-slate-200 bg-white">
@@ -180,7 +181,7 @@ export default function Home() {
               ],
               [
                 "Which image formats are supported?",
-                "ResizeFox currently supports JPG, PNG and WEBP images.",
+                "Image tools support JPG, PNG and WebP. The PDF tools support PDF documents and can also create PDFs from JPG or PNG images.",
               ],
               [
                 "Can I compress an image to a specific size?",

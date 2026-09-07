@@ -15,7 +15,7 @@ export default function TermsPage() {
         <h1 className="text-4xl font-black">Terms of Use</h1>
 
         <p className="mt-3 text-sm text-slate-500">
-          Last updated: August 20, 2026
+          Last updated: September 7, 2026
         </p>
 
         <div className="mt-10 space-y-8 leading-7 text-slate-600">
@@ -39,7 +39,9 @@ export default function TermsPage() {
             <p className="mt-3">
               ResizeFox is provided for lawful personal and commercial use.
               You are responsible for ensuring that you have the necessary
-              rights to any images you process using the service.
+              rights to any images or PDF documents you process using the
+              service. Do not use the tools to infringe copyright, privacy or
+              other legal rights.
             </p>
           </section>
 

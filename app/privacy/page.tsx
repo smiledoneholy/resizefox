@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Read the ResizeFox privacy policy and learn how your images and data are handled.",
+    "Read the ResizeFox privacy policy and learn how your image files, PDF documents and usage data are handled.",
   alternates: {
     canonical: "/privacy",
   },
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-black">Privacy Policy</h1>
 
         <p className="mt-3 text-sm text-slate-500">
-          Last updated: August 21, 2026
+          Last updated: September 7, 2026
         </p>
 
         <div className="mt-10 space-y-8 leading-7 text-slate-600">
@@ -26,22 +26,23 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-3">
-              ResizeFox provides free browser-based tools for resizing,
-              compressing and converting images. We respect your privacy
-              and aim to collect as little personal information as
-              possible.
+              ResizeFox provides free browser-based tools for editing images
+              and working with PDF documents. We respect your privacy and aim
+              to collect as little personal information as possible.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-slate-900">
-              2. Your Images
+              2. Your Files
             </h2>
 
             <p className="mt-3">
-              Images processed with ResizeFox are handled locally in your
-              web browser. They are not uploaded to our servers as part of
-              the image resizing, compression or conversion process.
+              Images and PDF documents processed with ResizeFox are handled
+              locally in your web browser. They are not uploaded to our servers
+              as part of the editing, compression, conversion, merging or page
+              extraction process. The resulting download exists temporarily in
+              your browser session until you close or reload the page.
             </p>
           </section>
 
@@ -63,8 +64,8 @@ export default function PrivacyPage() {
               session and usage information, and cookies or similar
               identifiers. Google may also receive information such as your IP
               address and the URL of the page you visit. This analytics
-              information does not include the image files you process with
-              ResizeFox.
+              information does not include the image or PDF files you process
+              with ResizeFox.
             </p>
 
             <p className="mt-3">
