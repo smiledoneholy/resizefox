@@ -23,8 +23,8 @@ export default function Home() {
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
           Fast and private tools that work directly in your browser. Edit
-          images or work with PDF documents without uploading your files to
-          our servers.
+          images or use our PDF converter to create, merge, split, rotate and
+          compress documents without uploading files to our servers.
         </p>
 
         <div className="mt-7 flex flex-wrap justify-center gap-5 text-sm font-medium text-slate-600">

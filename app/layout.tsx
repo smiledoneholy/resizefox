@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Edit JPG, PNG and WebP images and work with PDF documents online for free. Private browser-based tools with no signup required.",
+    "Resize, compress and convert JPG, PNG and WebP images. Use our free PDF converter to create, merge, split, rotate and compress PDF files privately.",
    alternates: {
   canonical: "/",
 },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ResizeFox - Free Image & PDF Tools",
     description:
-      "Edit images and create, convert or organize PDF documents online. Private browser-based tools with no signup.",
+      "Edit images and use a free PDF converter to create, merge, split, rotate and compress PDF files privately in your browser.",
     url: "https://resizefox.com",
     siteName: "ResizeFox",
     type: "website",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ResizeFox - Free Image & PDF Tools",
     description:
-      "Edit images and create, convert or organize PDF documents online. Private browser-based tools with no signup.",
+      "Edit images and use a free PDF converter to create, merge, split, rotate and compress PDF files privately in your browser.",
   },
 
   robots: {

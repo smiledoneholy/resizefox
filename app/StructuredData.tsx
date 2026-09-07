@@ -24,7 +24,7 @@ export function WebSiteJsonLd() {
         name: "ResizeFox",
         url: "https://resizefox.com/",
         description:
-          "Free browser-based tools for editing JPG, PNG and WebP images and creating, converting or organizing PDF documents.",
+          "Free browser-based image tools and PDF converter for creating, merging, splitting, rotating and compressing PDF documents.",
       }}
     />
   );
