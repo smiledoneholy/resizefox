@@ -21,7 +21,6 @@ export function SiteHeader() {
     <header className="border-b border-slate-200 bg-white text-slate-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <span className="text-2xl" aria-hidden="true">🦊</span>
           <span className="text-lg font-extrabold tracking-tight sm:text-xl">
             Resize<span className="text-orange-500">Fox</span>
           </span>
@@ -51,9 +50,8 @@ export function SiteFooter() {
     <footer className="border-t border-slate-800 bg-slate-950 text-white">
       <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 sm:px-8 lg:grid-cols-[1.2fr_2fr]">
         <div className="max-w-md">
-          <Link href="/" className="flex items-center gap-2 text-xl font-extrabold">
-            <span aria-hidden="true">🦊</span>
-            ResizeFox
+          <Link href="/" className="text-xl font-extrabold tracking-tight">
+            Resize<span className="text-orange-500">Fox</span>
           </Link>
           <p className="mt-3 text-sm leading-6 text-slate-400">
             Free browser-based tools for editing images and working with PDF
