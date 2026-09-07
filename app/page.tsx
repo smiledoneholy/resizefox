@@ -35,12 +35,17 @@ export default function Home() {
       </section>
       <section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-10 sm:px-8">
         <h2 className="text-center text-2xl font-black">Choose the tool for your task</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["/resize-image", "Change pixel dimensions", "Set width and height while keeping the image proportions."],
             ["/compress-image", "Reduce file size", "Choose an upload limit and check whether the result meets it."],
             ["/etsy-image-resizer", "Prepare Etsy product photos", "Follow listing photo guidance for dimensions, detail and thumbnails."],
             ["/compress-image-for-email", "Prepare email attachments", "Balance readable images with the total size of your attachments."],
+            ["/crop-image", "Crop an image", "Remove unwanted edges with an exact pixel crop area."],
+            ["/rotate-image", "Rotate or correct orientation", "Turn an image 90, 180 or 270 degrees."],
+            ["/flip-image", "Mirror an image", "Flip the picture horizontally or vertically."],
+            ["/bulk-resize-images", "Resize several images", "Apply one width to a group while preserving each aspect ratio."],
+            ["/convert-image", "Convert image format", "Create a JPG, PNG or WebP copy in your browser."],
           ].map(([href, title, description]) => (
             <Link key={href} href={href} className="rounded-2xl border border-orange-200 bg-white p-6 transition hover:border-orange-500">
               <h3 className="text-lg font-bold">{title}</h3>
@@ -64,6 +69,7 @@ export default function Home() {
           <Link href="/blog/jpg-png-webp-file-extensions" className="font-bold text-orange-700 underline">JPG, PNG or WebP?</Link>
           <Link href="/blog" className="font-bold text-orange-700 underline">All tutorials →</Link>
         </div>
+        <div className="mt-6 text-center"><Link href="/tools" className="font-bold text-orange-600 underline">See all image tools and formats →</Link></div>
       </section>
 
       <section className="border-y border-slate-200 bg-white">

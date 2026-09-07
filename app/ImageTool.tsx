@@ -9,6 +9,7 @@ type ImageToolProps = {
   initialMode?: Mode;
   compressOnly?: boolean;
   resizeOnly?: boolean;
+  convertOnly?: boolean;
   previewResult?: boolean;
   acceptedTypes?: string;
   uploadHint?: string;
@@ -19,6 +20,7 @@ export default function ImageTool({
   initialMode = "resize",
   compressOnly = false,
   resizeOnly = false,
+  convertOnly = false,
   previewResult = false,
   acceptedTypes = "image/jpeg,image/png,image/webp",
   uploadHint = "JPG, PNG and WEBP supported",
@@ -218,11 +220,24 @@ export default function ImageTool({
       const targetBytes = targetKB * 1024;
 
       if (format === "image/png") {
-        const blob = await canvasToBlob(canvas, 1);
+        let workingCanvas = canvas;
+        let blob = await canvasToBlob(workingCanvas, 1);
 
-        if (blob) {
-          saveResult(blob);
+        for (let attempt = 0; blob && blob.size > targetBytes && attempt < 12; attempt++) {
+          const scale = Math.max(0.72, Math.sqrt(targetBytes / blob.size) * 0.94);
+          const smaller = document.createElement("canvas");
+          smaller.width = Math.max(1, Math.round(workingCanvas.width * scale));
+          smaller.height = Math.max(1, Math.round(workingCanvas.height * scale));
+          const smallerContext = smaller.getContext("2d");
+          if (!smallerContext) break;
+          smallerContext.imageSmoothingEnabled = true;
+          smallerContext.imageSmoothingQuality = "high";
+          smallerContext.drawImage(workingCanvas, 0, 0, smaller.width, smaller.height);
+          workingCanvas = smaller;
+          blob = await canvasToBlob(workingCanvas, 1);
         }
+
+        if (blob) saveResult(blob);
 
         setProcessing(false);
         return;
@@ -370,7 +385,7 @@ export default function ImageTool({
     <div>
       {/* TABS */}
 
-      {!compressOnly && !resizeOnly && (
+      {!compressOnly && !resizeOnly && !convertOnly && (
         <div className="mb-6 flex justify-center">
           <div className="grid w-full max-w-xl grid-cols-3 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
             {(["resize", "compress", "convert"] as Mode[]).map(

@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import ImageTool from "../ImageTool"; import ToolGuidePage from "../tools/ToolGuidePage"; import { formatGuide } from "../tools/guide-data";
+const guide=formatGuide("resize","JPG"); export const metadata:Metadata={title:"Resize JPG Images Online",description:guide.intro,alternates:{canonical:"/resize-jpg"}}; export default function Page(){return <ToolGuidePage guide={guide} tool={<ImageTool initialMode="resize" resizeOnly fixedFormat="image/jpeg" acceptedTypes="image/jpeg" uploadHint="JPG images supported" previewResult/>}/>;}

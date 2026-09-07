@@ -1,4 +1,7 @@
+import { moreGuides } from "./more-guides";
+
 export type Guide = {
+  date?: string;
   slug: string; title: string; description: string; category: string;
   dimensions: [string, string, string][];
   intro: string; steps: string[];
@@ -9,6 +12,7 @@ export type Guide = {
 
 export const published = "2026-09-05";
 export const guides: Guide[] = [
+  ...moreGuides,
   {
     slug: "instagram-post-image-size", category: "Social media",
     title: "How to resize a photo for an Instagram post",

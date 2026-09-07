@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = guides.find(g => g.slug === slug);
   if (!guide) notFound();
   return { title: guide.title, description: guide.description, alternates: { canonical: `/blog/${slug}` },
-    openGraph: { type: "article", title: guide.title, description: guide.description, url: `https://resizefox.com/blog/${slug}`, publishedTime: published },
+    openGraph: { type: "article", title: guide.title, description: guide.description, url: `https://resizefox.com/blog/${slug}`, publishedTime: guide.date ?? published },
   };
 }
 
@@ -23,14 +23,14 @@ export default async function GuidePage({ params }: Props) {
   return <main className="bg-[#fafafa] text-slate-950">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
       "@context": "https://schema.org", "@type": "BlogPosting", headline: guide.title, description: guide.description,
-      datePublished: published, dateModified: published, mainEntityOfPage: `https://resizefox.com/blog/${slug}`,
+      datePublished: guide.date ?? published, dateModified: guide.date ?? published, mainEntityOfPage: `https://resizefox.com/blog/${slug}`,
       author: { "@type": "Organization", name: "ResizeFox", url: "https://resizefox.com/about" },
     }).replace(/</g, "\\u003c") }} />
     <article className="mx-auto max-w-4xl px-5 py-12 sm:px-8 sm:py-16">
       <nav aria-label="Breadcrumb" className="text-sm text-slate-600"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Tutorials</Link> / {guide.category}</nav>
       <p className="mt-10 text-sm font-bold uppercase tracking-widest text-orange-600">{guide.category}</p>
       <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl">{guide.title}</h1>
-      <p className="mt-5 text-sm text-slate-500">By <Link href="/about" className="underline">ResizeFox</Link> · Published <time dateTime={published}>September 5, 2026</time></p>
+      <p className="mt-5 text-sm text-slate-500">By <Link href="/about" className="underline">ResizeFox</Link> · Published <time dateTime={guide.date ?? published}>{new Date(`${guide.date ?? published}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></p>
       <p className="mt-8 text-lg leading-8 text-slate-700">{guide.intro}</p>
       <nav aria-label="On this page" className="mt-8 rounded-2xl border border-slate-200 bg-white p-6">
         <p className="font-bold">In this tutorial</p>
