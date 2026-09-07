@@ -131,10 +131,10 @@ export default function PrivacyPage() {
               If you have a question about this Privacy Policy or how ResizeFox
               handles information, email us at{" "}
               <a
-                href="mailto:hello@resizefox.com"
+                href="mailto:hmaidasouhail@gmail.com"
                 className="font-semibold text-orange-600 hover:text-orange-700"
               >
-                hello@resizefox.com
+                hmaidasouhail@gmail.com
               </a>
               .
             </p>

@@ -58,10 +58,10 @@ export default function AboutPage() {
             <p className="mt-3">
               Questions, feedback and problem reports are welcome. Email us at{" "}
               <a
-                href="mailto:hello@resizefox.com"
+                href="mailto:hmaidasouhail@gmail.com"
                 className="font-bold text-orange-600 hover:text-orange-700"
               >
-                hello@resizefox.com
+                hmaidasouhail@gmail.com
               </a>
               .
             </p>

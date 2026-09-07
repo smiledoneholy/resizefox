@@ -33,10 +33,10 @@ export default function ContactPage() {
           </p>
 
           <a
-            href="mailto:hello@resizefox.com"
+            href="mailto:hmaidasouhail@gmail.com"
             className="mt-2 inline-block font-bold text-orange-500 hover:text-orange-600"
           >
-            hello@resizefox.com
+            hmaidasouhail@gmail.com
           </a>
 
           <p className="mt-6 text-sm leading-6 text-slate-500">
