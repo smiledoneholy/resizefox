@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import PdfTool from "../tools/PdfTool"; import ToolGuidePage from "../tools/ToolGuidePage"; import {pdfGuide} from "../tools/pdf-guide-data";
+const guide=pdfGuide("pdf-to-jpg"); export const metadata:Metadata={title:"Convert PDF Pages to JPG Images",description:guide.intro,alternates:{canonical:"/pdf-to-jpg"}}; export default function Page(){return <ToolGuidePage guide={guide} tool={<PdfTool mode="pdf-to-jpg"/>}/>;}

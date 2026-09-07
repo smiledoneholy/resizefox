@@ -4,9 +4,11 @@ import { guides, published } from "./blog/articles";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://resizefox.com";
   const expandedTools = ["tools", "crop-image", "rotate-image", "flip-image", "bulk-resize-images", "convert-image", "resize-jpg", "resize-png", "resize-webp", "compress-png", "compress-webp", "png-to-jpg", "jpg-to-png", "webp-to-jpg"];
+  const pdfTools = ["images-to-pdf", "pdf-to-jpg", "merge-pdf", "split-pdf", "rotate-pdf", "compress-pdf"];
 
   return [
     ...expandedTools.map(path => ({ url: `${baseUrl}/${path}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: path === "tools" ? 0.95 : 0.85 })),
+    ...pdfTools.map(path => ({ url: `${baseUrl}/${path}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.85 })),
     { url: `${baseUrl}/blog`, lastModified: "2026-09-07", changeFrequency: "monthly", priority: 0.8 },
     ...guides.map(guide => ({ url: `${baseUrl}/blog/${guide.slug}`, lastModified: guide.date ?? published, changeFrequency: "monthly" as const, priority: 0.7 })),
     {

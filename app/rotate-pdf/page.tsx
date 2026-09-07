@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import PdfTool from "../tools/PdfTool"; import ToolGuidePage from "../tools/ToolGuidePage"; import {pdfGuide} from "../tools/pdf-guide-data";
+const guide=pdfGuide("rotate"); export const metadata:Metadata={title:"Rotate PDF Pages Online",description:guide.intro,alternates:{canonical:"/rotate-pdf"}}; export default function Page(){return <ToolGuidePage guide={guide} tool={<PdfTool mode="rotate"/>}/>;}

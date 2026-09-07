@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import PdfTool from "../tools/PdfTool"; import ToolGuidePage from "../tools/ToolGuidePage"; import {pdfGuide} from "../tools/pdf-guide-data";
+const guide=pdfGuide("split"); export const metadata:Metadata={title:"Split PDF and Extract Pages Online",description:guide.intro,alternates:{canonical:"/split-pdf"}}; export default function Page(){return <ToolGuidePage guide={guide} tool={<PdfTool mode="split"/>}/>;}

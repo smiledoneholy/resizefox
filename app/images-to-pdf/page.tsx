@@ -1,0 +1,2 @@
+import type { Metadata } from "next"; import PdfTool from "../tools/PdfTool"; import ToolGuidePage from "../tools/ToolGuidePage"; import {pdfGuide} from "../tools/pdf-guide-data";
+const guide=pdfGuide("images-to-pdf"); export const metadata:Metadata={title:"Convert JPG and PNG Images to PDF",description:guide.intro,alternates:{canonical:"/images-to-pdf"}}; export default function Page(){return <ToolGuidePage guide={guide} tool={<PdfTool mode="images-to-pdf"/>}/>;}
