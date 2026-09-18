@@ -69,6 +69,7 @@ export default function AboutPage() {
             </p>
           </section>
 
+          <section><h2 className="text-2xl font-bold text-slate-900">Corrections and reproducible examples</h2><p className="mt-3">Our <a href="/compression-lab" className="text-orange-700 underline">Image Compression Lab</a> uses original generated patterns and measures exports in your browser. It labels mathematical examples separately from measured results. We correct instructions when tools change and record specific changes in our <a href="/updates" className="text-orange-700 underline">update log</a>. When reporting a problem, include the page, browser and settings so we can reproduce it. Please do not send private identity documents.</p></section>
           <section className="rounded-3xl border border-orange-200 bg-orange-50 p-6 sm:p-8">
             <h2 className="text-2xl font-bold text-slate-900">Contact</h2>
             <p className="mt-3">

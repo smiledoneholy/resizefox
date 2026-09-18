@@ -10,8 +10,9 @@ async function renderPdf(file: File, scale = 1.5) {
   const pdfjs = await import("pdfjs-dist");
   pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
   const source = new Uint8Array(await file.arrayBuffer());
-  const pdf = await pdfjs.getDocument({ data: source }).promise;
-  const pages: HTMLCanvasElement[] = [];
+  const loadingTask = pdfjs.getDocument({ data: source });
+  const pdf = await loadingTask.promise;
+  const pages: { canvas: HTMLCanvasElement; width: number; height: number }[] = [];
   for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
     const page = await pdf.getPage(pageNumber);
     const viewport = page.getViewport({ scale });
@@ -21,8 +22,10 @@ async function renderPdf(file: File, scale = 1.5) {
     const context = canvas.getContext("2d");
     if (!context) continue;
     await page.render({ canvas, canvasContext: context, viewport }).promise;
-    pages.push(canvas);
+    const original = page.getViewport({ scale: 1 });
+    pages.push({ canvas, width: original.width, height: original.height });
   }
+  await loadingTask.destroy();
   return pages;
 }
 
@@ -99,7 +102,7 @@ export default function PdfTool({ mode }: { mode: PdfMode }) {
         setResults([makeResult(await pdf.save(), "resizefox-rotated.pdf", `${pdf.getPageCount()} pages rotated ${angle}°`)]);
       } else if (mode === "pdf-to-jpg") {
         const pages = await renderPdf(files[0], 1.7);
-        const created = await Promise.all(pages.map(async (canvas, index) => {
+        const created = await Promise.all(pages.map(async ({ canvas }, index) => {
           const blob = await canvasBlob(canvas, quality / 100);
           if (!blob) throw new Error("A page could not be converted.");
           return { name: `resizefox-page-${index + 1}.jpg`, url: URL.createObjectURL(blob), detail: `${canvas.width} × ${canvas.height}px` };
@@ -108,15 +111,19 @@ export default function PdfTool({ mode }: { mode: PdfMode }) {
       } else {
         const pages = await renderPdf(files[0], quality >= 80 ? 1.5 : quality >= 60 ? 1.2 : 1);
         const output = await PDFDocument.create();
-        for (const canvas of pages) {
+        for (const { canvas, width, height } of pages) {
           const blob = await canvasBlob(canvas, quality / 100);
           if (!blob) continue;
           const image = await output.embedJpg(new Uint8Array(await blob.arrayBuffer()));
-          const page = output.addPage([canvas.width, canvas.height]);
-          page.drawImage(image, { x: 0, y: 0, width: canvas.width, height: canvas.height });
+          const page = output.addPage([width, height]);
+          page.drawImage(image, { x: 0, y: 0, width, height });
         }
         const bytes = await output.save();
-        setResults([makeResult(bytes, "resizefox-compressed.pdf", `${Math.round(bytes.length / 1024)} KB · rasterized PDF`)]);
+        if (bytes.length >= files[0].size) {
+          setResults([makeResult(new Uint8Array(await files[0].arrayBuffer()), "resizefox-original.pdf", "No size saving with these settings. Original PDF preserved.")]);
+        } else {
+          setResults([makeResult(bytes, "resizefox-compressed.pdf", `${Math.round(bytes.length / 1024)} KB · ${(100 * (1 - bytes.length / files[0].size)).toFixed(1)}% smaller · page dimensions preserved · text becomes images`)]);
+        }
       }
     } catch (caught) { setError(caught instanceof Error ? caught.message : "The file could not be processed."); }
     finally { setWorking(false); }
@@ -125,6 +132,7 @@ export default function PdfTool({ mode }: { mode: PdfMode }) {
   const button = {"images-to-pdf":"Create PDF","pdf-to-jpg":"Convert PDF to JPG","merge":"Merge PDFs","split":"Split PDF","rotate":"Rotate PDF","compress":"Compress PDF"}[mode];
   return <section className="mx-auto max-w-5xl px-5 pb-14 sm:px-8"><div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
     <label className="block cursor-pointer rounded-3xl border-2 border-dashed border-orange-200 px-6 py-12 text-center hover:border-orange-500"><span className="block text-4xl">📄</span><span className="mt-4 block text-xl font-bold">Choose {imagesMode ? "JPG or PNG images" : multiple ? "PDF files" : "a PDF file"}</span><span className="mt-2 block text-slate-500">{multiple ? "Multiple selection supported" : "The file is processed in your browser"}</span><input type="file" accept={accept} multiple={multiple} onChange={select} className="hidden" /></label>
+    {mode === "compress" && <p className="mt-5 rounded-xl bg-amber-50 p-4 text-sm leading-6 text-amber-950">Best for scanned pages. Compression turns pages into images: selectable text, links, forms and accessibility structure are lost. Keep your original. Page dimensions are preserved; if the result is larger, you receive the original file.</p>}
     {files.length > 0 && <div className="mt-6 rounded-2xl bg-slate-50 p-5"><p className="font-bold">{files.length} file{files.length > 1 ? "s" : ""} selected</p><p className="mt-1 truncate text-sm text-slate-500">{files.map(file => file.name).join(", ")}</p>
       {mode === "split" && <label className="mt-4 block text-sm font-semibold">Pages to extract (optional)<input value={range} onChange={event => setRange(event.target.value)} placeholder="Example: 1,3-5" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3"/><small className="mt-2 block font-normal text-slate-500">Leave empty to create one PDF for every page.</small></label>}
       {mode === "rotate" && <div className="mt-4 grid grid-cols-3 gap-2">{[90,180,270].map(value => <button key={value} onClick={() => setAngle(value)} className={`rounded-xl border px-3 py-3 font-bold ${angle === value ? "border-orange-500 bg-orange-50 text-orange-700" : "border-slate-200 bg-white"}`}>{value}°</button>)}</div>}

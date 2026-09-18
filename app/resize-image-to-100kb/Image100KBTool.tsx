@@ -63,8 +63,8 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
 
     try {
       const img = new Image();
-
-      img.onload = async () => {
+      img.src = preview;
+      await img.decode();
         if (file.size <= targetKB * 1024) {
           if (resultUrl) URL.revokeObjectURL(resultUrl);
           setResultBlob(file);
@@ -149,14 +149,6 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
         setResultBlob(bestBlob);
         setResultUrl(url);
         setProcessing(false);
-      };
-
-      img.onerror = () => {
-        setError("Could not read this image.");
-        setProcessing(false);
-      };
-
-      img.src = preview;
     } catch {
       setError("Something went wrong while compressing the image.");
       setProcessing(false);
@@ -315,6 +307,7 @@ export default function Image100KBTool({ targetKB = 100 }: ImageToolProps) {
 
             <button
               onClick={resetTool}
+              disabled={processing}
               className="mt-3 rounded-xl border border-slate-200 px-6 py-3 font-bold"
             >
               Choose Another Image

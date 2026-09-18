@@ -2,6 +2,7 @@ import { moreGuides } from "./more-guides";
 
 export type Guide = {
   date?: string;
+  updated?: string;
   slug: string; title: string; description: string; category: string;
   dimensions: [string, string, string][];
   intro: string; steps: string[];
@@ -14,12 +15,12 @@ export const published = "2026-09-05";
 export const guides: Guide[] = [
   ...moreGuides,
   {
-    slug: "instagram-post-image-size", category: "Social media",
+    slug: "instagram-post-image-size", updated: "2026-09-18", category: "Social media",
     title: "How to resize a photo for an Instagram post",
     description: "Prepare square and portrait Instagram images, choose JPG or PNG, and avoid stretching photos when changing aspect ratio.",
     intro: "Start with the shape of the post, then choose the pixel dimensions. A portrait photograph and a square product card need different compositions, even when both are 1080 pixels wide. This tutorial uses practical export canvases; preview your post in the app or scheduler you actually use before publishing.",
     dimensions: [["Square canvas", "1080 × 1080 px", "1:1"], ["Portrait canvas", "1080 × 1350 px", "4:5"], ["Taller portrait canvas", "1080 × 1440 px", "3:4"]],
-    steps: ["Choose the original photograph, not a screenshot of a previous Instagram upload. Repeated saving can introduce visible artifacts.", "Choose a square or portrait composition. Crop to that ratio in your phone or image editor first; ResizeFox changes dimensions but does not provide a crop editor.", "Open the image resizer, select your cropped image and keep Maintain aspect ratio enabled. Enter a width of 1080 pixels and check the resulting height.", "Choose JPG for a photograph or PNG for a graphic when sharp edges matter. Resize and inspect the result before downloading.", "Upload to Instagram and inspect both the post and its profile preview. For a carousel, prepare a consistent canvas and review every slide for unwanted cropping."],
+    steps: ["Choose the original photograph, not a screenshot of a previous Instagram upload. Repeated saving can introduce visible artifacts.", "Choose a square or portrait composition. Use ResizeFox’s Crop Image tool to prepare the composition first. Set crop width and height to the desired ratio, then position the crop around the subject.", "Open the image resizer, select your cropped image and keep Maintain aspect ratio enabled. Enter a width of 1080 pixels and check the resulting height.", "Choose JPG for a photograph or PNG for a graphic when sharp edges matter. Resize and inspect the result before downloading.", "Upload to Instagram and inspect both the post and its profile preview. For a carousel, prepare a consistent canvas and review every slide for unwanted cropping."],
     sections: [
       { title: "Worked example: from a phone photo to a portrait post", paragraphs: ["A 3024 × 4032 photograph has a 3:4 ratio. Reducing its width to 1080 gives a height of 1440: 4032 × 1080 ÷ 3024 = 1440. No stretching is needed. To make a 4:5 composition, crop the source to 3024 × 3780 first, then resize to 1080 × 1350.", "The crop removes 252 pixels of height in this example. Decide which part of the background can go rather than letting an automatic center crop cut into a face or product. These numbers are a geometry example, not a measured compression result."] },
       { title: "Why the post and profile thumbnail may look different", paragraphs: ["A platform can show one image inside several containers. Keep a title and the main subject away from the outer edges, and use the final app preview to judge placement. Do not assume that a full-size export guarantees the same framing in the grid.", "Publishing tools can support different combinations of ratios. The dimensions above are preparation options, not a promise that every placement or scheduler accepts each one. If a taller image is cropped in your workflow, prepare a deliberate 4:5 or square version instead."] },

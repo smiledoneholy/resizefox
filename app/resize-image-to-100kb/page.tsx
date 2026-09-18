@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image100KBTool from "./Image100KBTool";
+import UploadChecklist from "../UploadChecklist";
 import { WebApplicationJsonLd } from "../StructuredData";
 
 export const metadata: Metadata = {
@@ -59,6 +60,7 @@ export default function ResizeImageTo100KB() {
         </p>
 
         <Image100KBTool targetKB={100} />
+        <UploadChecklist targetKB={100} />
 
         <section
           style={{

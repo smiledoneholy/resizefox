@@ -34,10 +34,12 @@ export default function Home() {
           <span>✓ Free to use</span>
         </div>
       </section>
+      <ImageTool />
       <section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-10 sm:px-8">
         <h2 className="text-center text-2xl font-black">Choose the tool for your task</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
+            ["/compression-lab", "Compare formats visually", "Experiment with small text, gradients and transparency using real measured exports."],
             ["/resize-image", "Change pixel dimensions", "Set width and height while keeping the image proportions."],
             ["/compress-image", "Reduce file size", "Choose an upload limit and check whether the result meets it."],
             ["/etsy-image-resizer", "Prepare Etsy product photos", "Follow listing photo guidance for dimensions, detail and thumbnails."],
@@ -60,7 +62,7 @@ export default function Home() {
       </section>
       {/* TOOL */}
 
-      <ImageTool />
+
 
       {/* BENEFITS */}
       <section className="mx-auto max-w-5xl px-5 py-12 sm:px-8">

@@ -14,6 +14,7 @@ export default function BlogPage() {
       <p className="text-sm font-bold uppercase tracking-widest text-orange-600">ResizeFox tutorials</p>
       <h1 className="mt-4 max-w-3xl text-4xl font-black tracking-tight sm:text-6xl">The right size.<br />The right format.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">Learn how to prepare images for social posts, application forms and the web. Follow worked examples, understand the tradeoffs and open the tool you need.</p>
+      <Link href="/compression-lab" className="mt-8 block rounded-2xl border border-orange-200 bg-orange-50 p-6"><h2 className="text-2xl font-bold">Try the Image Compression Lab</h2><p className="mt-3 leading-7">Compare JPG, PNG and WebP using original test patterns. Inspect small text, gradients and transparency, then download the measured results.</p><span className="mt-3 block font-bold text-orange-800">Run an experiment →</span></Link>
       <nav aria-label="Tutorial topics" className="mt-8 flex flex-wrap gap-3">
         {[...new Set(guides.map(g => g.category))].map(category => <a key={category} href={`#${category.toLowerCase().replaceAll(" ", "-")}`} className="rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-bold hover:bg-orange-50">{category}</a>)}
       </nav>

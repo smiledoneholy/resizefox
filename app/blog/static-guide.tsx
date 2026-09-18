@@ -16,6 +16,7 @@ export function metadataForGuide(slug: string): Metadata {
       description: guide.description,
       url: `https://resizefox.com/blog/${slug}`,
       publishedTime: guide.date ?? published,
+      modifiedTime: guide.updated ?? guide.date ?? published,
     },
   };
 }
