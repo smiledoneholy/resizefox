@@ -16,6 +16,17 @@ const path = require('node:path');
   await page.route(/^https?:\/\//, route => route.request().url().startsWith(base) ? route.continue() : route.abort());
   const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'resizefox-qa-'));
   try {
+    await page.goto(base+'/');
+    await page.evaluate(() => { window.__navigationCheck = 'preserved'; });
+    for (const target of ['/blog','/blog/instagram-post-image-size','/compression-lab']) {
+      await page.locator(`a[href="${target}"]`).first().click();
+      await page.waitForURL(base+target);
+      await page.locator('h1').waitFor();
+      assert.equal(await page.evaluate(() => window.__navigationCheck),'preserved',target+' client navigation');
+    }
+    assert.equal((await page.request.get(base+'/nonexistent-quality-check-page')).status(),404);
+    for (const resource of ['/robots.txt','/ads.txt']) assert.equal((await page.request.get(base+resource)).status(),200,resource);
+    console.log('PASS client navigation, real 404 and crawler resources');
     assert.equal((await page.goto(base+'/compression-lab')).status(),200);
     for (const sample of ['text','gradient','transparent']) {
       await page.getByLabel('Test pattern').selectOption(sample);

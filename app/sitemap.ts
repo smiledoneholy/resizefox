@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+export const dynamic = "force-static";
 import { guides, published } from "./blog/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
