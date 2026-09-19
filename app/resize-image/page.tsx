@@ -1,3 +1,4 @@
+import ImageSizeReference from "../ImageSizeReference";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ImageTool from "../ImageTool";
@@ -72,6 +73,7 @@ export default function ResizeImagePage() {
       </section>
 
       <ImageTool initialMode="resize" resizeOnly previewResult />
+      <ImageSizeReference />
 
       <section className="border-y border-slate-200 bg-white">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">

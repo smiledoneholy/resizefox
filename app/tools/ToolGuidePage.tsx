@@ -1,3 +1,4 @@
+import ImageSizeReference from "../ImageSizeReference";
 import type { ReactNode } from "react";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ export type ToolGuide = {
   related: { href: string; title: string; description: string }[];
 };
 
-export default function ToolGuidePage({ guide, tool }: { guide: ToolGuide; tool: ReactNode }) {
+export default function ToolGuidePage({ guide, tool, imageReference = false }: { guide: ToolGuide; tool: ReactNode; imageReference?: boolean }) {
   return <main className="min-h-screen bg-[#fafafa] text-slate-950">
     <section className="mx-auto max-w-5xl px-5 pb-9 pt-16 text-center sm:px-8 sm:pt-20">
       <p className="font-bold uppercase tracking-wider text-orange-600">{guide.eyebrow}</p>
@@ -20,6 +21,7 @@ export default function ToolGuidePage({ guide, tool }: { guide: ToolGuide; tool:
       <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">{guide.intro}</p>
     </section>
     {tool}
+    {imageReference && <ImageSizeReference />}
     <section className="border-y border-slate-200 bg-white"><div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
       <h2 className="text-3xl font-black">How to use this tool</h2>
       <div className="mt-8 grid gap-5 md:grid-cols-3">{guide.steps.map(([title, text], index) => <div key={title} className="rounded-2xl border border-slate-200 p-6"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 font-black text-white">{index + 1}</span><h3 className="mt-4 text-xl font-bold">{title}</h3><p className="mt-2 leading-7 text-slate-600">{text}</p></div>)}</div>

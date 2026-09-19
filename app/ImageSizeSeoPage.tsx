@@ -1,3 +1,4 @@
+import ImageSizeReference from "./ImageSizeReference";
 import Image100KBTool from "./resize-image-to-100kb/Image100KBTool";
 import Link from "next/link";
 import UploadChecklist from "./UploadChecklist";
@@ -49,6 +50,7 @@ export default function ImageSizeSeoPage({
         </p>
 
         <Image100KBTool targetKB={targetKB} />
+      <ImageSizeReference />
         <UploadChecklist targetKB={targetKB} />
         <p className="mt-6 text-slate-300">Need help with a rejected upload? <Link href="/blog/compress-image-upload-limit" className="text-orange-400 underline">Follow the file-size tutorial</Link> or <Link href="/blog/jpg-png-webp-file-extensions" className="text-orange-400 underline">compare image formats</Link>.</p>
 

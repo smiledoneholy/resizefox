@@ -1,3 +1,4 @@
+import ImageSizeReference from "../ImageSizeReference";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Lab from "./Lab";
@@ -11,6 +12,7 @@ export default function Page() {
     <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">A small file is only useful when its details survive. This lab lets you compare the same pixels in PNG, JPG and WebP, with real byte counts and downloadable results. Try our original patterns before experimenting with your photograph or screenshot.</p>
     <p className="mt-4 text-sm text-slate-500">By ResizeFox · Published September 18, 2026</p>
     <Lab />
+      <ImageSizeReference />
     <div className="max-w-3xl space-y-10 leading-8 text-slate-700">
       <section><h2 className="text-2xl font-bold text-slate-950">Experiment 1: keep small text readable</h2><p className="mt-4">Select the text pattern, keep the dimensions at 100% and compare at 75% quality. Download the JPG and PNG. View both at 100% zoom and inspect the 12-pixel lettering, the order number and the blue and orange lines. Look for faint halos, blurred punctuation and color bleeding around high-contrast edges.</p><p className="mt-4">Repeat at 25% quality. The test changes encoding while keeping the number of pixels fixed. Then change dimensions to 50%: a 12-pixel character now occupies roughly 6 pixels in height. Even lossless PNG cannot restore detail removed by resizing. For support screenshots, crop unnecessary surroundings before shrinking important text.</p><Link className="text-orange-700 underline" href="/blog/resize-screenshot-keep-text-readable">Read the screenshot preparation walkthrough</Link></section>
       <section><h2 className="text-2xl font-bold text-slate-950">Experiment 2: gradients are different from screenshots</h2><p className="mt-4">Choose the gradient pattern. This is a synthetic illustration with fine texture, not a photograph or a universal benchmark. Compare the sizes at 75% and 25% quality. Inspect the smooth transitions for bands and the tiny marks for smearing. The format with the fewest bytes is not automatically the version you should publish.</p><p className="mt-4">Next, choose an original photograph from your own device. Leaves, hair and fabric behave differently from this pattern. Keep the dimensions unchanged for your first comparison, so you can tell the effect of encoding apart from the effect of removing pixels. Results depend on the picture and your browser; there is no honest fixed saving percentage for every image.</p></section>

@@ -1,3 +1,4 @@
+import ImageSizeReference from "./ImageSizeReference";
 import Link from "next/link";
 import { WebSiteJsonLd } from "./StructuredData";
 import ImageTool from "./ImageTool";
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
       </section>
       <ImageTool />
+      <ImageSizeReference />
       <section id="image-tools" className="mx-auto max-w-5xl scroll-mt-6 px-5 pb-10 sm:px-8">
         <h2 className="text-center text-2xl font-black">Choose the tool for your task</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

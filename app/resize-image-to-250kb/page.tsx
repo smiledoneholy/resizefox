@@ -1,3 +1,4 @@
+import ImageSizeReference from "../ImageSizeReference";
 import type { Metadata } from "next";
 import Image100KBTool from "../resize-image-to-100kb/Image100KBTool";
 import { WebApplicationJsonLd } from "../StructuredData";
@@ -34,6 +35,7 @@ export default function ResizeImageTo250KBPage() {
         </p>
 
         <Image100KBTool targetKB={250} />
+        <ImageSizeReference />
         <section className="mx-auto mt-12 max-w-3xl text-left">
   <h2 className="text-2xl font-black">
     How to Compress an Image to 250KB

@@ -1,3 +1,4 @@
+import ImageSizeReference from "../ImageSizeReference";
 import type { Metadata } from "next";
 import Image100KBTool from "./Image100KBTool";
 import UploadChecklist from "../UploadChecklist";
@@ -60,6 +61,7 @@ export default function ResizeImageTo100KB() {
         </p>
 
         <Image100KBTool targetKB={100} />
+      <ImageSizeReference />
         <UploadChecklist targetKB={100} />
 
         <section
