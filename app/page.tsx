@@ -49,6 +49,7 @@ export default function Home() {
             ["/flip-image", "Mirror an image", "Flip the picture horizontally or vertically."],
             ["/bulk-resize-images", "Resize several images", "Apply one width to a group while preserving each aspect ratio."],
             ["/convert-image", "Convert image format", "Create a JPG, PNG or WebP copy in your browser."],
+            ["/edit-pdf", "Edit a PDF", "Add text, images, highlights and signatures, then arrange your pages."],
             ["/images-to-pdf", "Convert images to PDF", "Combine JPG and PNG images into one private document."],
             ["/merge-pdf", "Merge PDF files", "Join several PDF documents in their selected order."],
             ["/split-pdf", "Extract PDF pages", "Separate every page or choose a specific page range."],

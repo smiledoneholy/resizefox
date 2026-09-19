@@ -5,11 +5,11 @@ import { guides, published } from "./blog/articles";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://resizefox.com";
   const expandedTools = ["tools", "crop-image", "rotate-image", "flip-image", "bulk-resize-images", "convert-image", "resize-jpg", "resize-png", "resize-webp", "compress-png", "compress-webp", "png-to-jpg", "jpg-to-png", "webp-to-jpg"];
-  const pdfTools = ["images-to-pdf", "pdf-to-jpg", "merge-pdf", "split-pdf", "rotate-pdf", "compress-pdf"];
+  const pdfTools = ["edit-pdf", "images-to-pdf", "pdf-to-jpg", "merge-pdf", "split-pdf", "rotate-pdf", "compress-pdf"];
 
   return [
     { url: `${baseUrl}/compression-lab`, lastModified: "2026-09-18", changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/updates`, lastModified: "2026-09-18", changeFrequency: "monthly", priority: 0.4 },
+    { url: `${baseUrl}/updates`, lastModified: "2026-09-19", changeFrequency: "monthly", priority: 0.4 },
     ...expandedTools.map(path => ({ url: `${baseUrl}/${path}`,  changeFrequency: "monthly" as const, priority: path === "tools" ? 0.95 : 0.85 })),
     ...pdfTools.map(path => ({ url: `${baseUrl}/${path}`,  changeFrequency: "monthly" as const, priority: 0.85 })),
     { url: `${baseUrl}/blog`, lastModified: "2026-09-18", changeFrequency: "monthly", priority: 0.8 },
