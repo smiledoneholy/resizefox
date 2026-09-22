@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-black">Privacy Policy</h1>
 
         <p className="mt-3 text-sm text-slate-500">
-          Last updated: September 7, 2026
+          Last updated: September 22, 2026
         </p>
 
         <div className="mt-10 space-y-8 leading-7 text-slate-600">
@@ -96,9 +96,16 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-xl font-bold text-slate-900">
-              5. Advertising and Google AdSense
+              5. Google Ads measurement and Google AdSense
             </h2>
 
+            <p className="mt-3">
+              ResizeFox uses the Google Ads tag to measure visits associated
+              with our advertising campaigns. Google may process page URLs,
+              advertising click identifiers, browser information and cookies
+              for this measurement. Your image and PDF file contents are not
+              included in this tracking.
+            </p>
             <p className="mt-3">
               ResizeFox does not currently display Google AdSense ads. If
               Google AdSense is enabled in the future, Google and other
