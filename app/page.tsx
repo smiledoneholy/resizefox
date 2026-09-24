@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import ImageSizeReference from "./ImageSizeReference";
 import Link from "next/link";
 import { WebSiteJsonLd } from "./StructuredData";
 import ImageTool from "./ImageTool";
+
+const title = "Free Image Resizer & PDF Tools | ResizeFox";
+const description = "Use our free image resizer to change JPG, PNG and WebP dimensions in your browser. Compress images or edit and convert PDFs, with no signup.";
+export const metadata: Metadata = {
+  title: { absolute: title }, description,
+  alternates: { canonical: "/" },
+  openGraph: { title, description, url: "https://resizefox.com", siteName: "ResizeFox", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
+};
 
 export default function Home() {
   return (
@@ -16,14 +26,14 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
-          Resize, Compress & Convert
+          Free Online Image Resizer
           <span className="block text-orange-500">
-            Images Online — Free
+            Plus Image & PDF Tools
           </span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-          Fast and private tools that work directly in your browser. Edit
+          Use our free image resizer to change photo dimensions directly in your browser. Compress
           images or use our PDF converter to create, merge, split, rotate and
           compress documents without uploading files to our servers.
         </p>
@@ -42,14 +52,14 @@ export default function Home() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["/compression-lab", "Compare formats visually", "Experiment with small text, gradients and transparency using real measured exports."],
-            ["/resize-image", "Change pixel dimensions", "Set width and height while keeping the image proportions."],
+            ["/resize-image", "Image resizer by pixels", "Set width and height while keeping the image proportions."],
             ["/compress-image", "Reduce file size", "Choose an upload limit and check whether the result meets it."],
-            ["/etsy-image-resizer", "Prepare Etsy product photos", "Follow listing photo guidance for dimensions, detail and thumbnails."],
+            ["/etsy-image-resizer", "Etsy image resizer", "Follow listing photo guidance for dimensions, detail and thumbnails."],
             ["/compress-image-for-email", "Prepare email attachments", "Balance readable images with the total size of your attachments."],
             ["/crop-image", "Crop an image", "Remove unwanted edges with an exact pixel crop area."],
             ["/rotate-image", "Rotate or correct orientation", "Turn an image 90, 180 or 270 degrees."],
             ["/flip-image", "Mirror an image", "Flip the picture horizontally or vertically."],
-            ["/bulk-resize-images", "Resize several images", "Apply one width to a group while preserving each aspect ratio."],
+            ["/bulk-resize-images", "Bulk image resizer", "Apply one width to a group while preserving each aspect ratio."],
             ["/convert-image", "Convert image format", "Create a JPG, PNG or WebP copy in your browser."],
             ["/edit-pdf", "Edit a PDF", "Add text, images, highlights and signatures, then arrange your pages."],
             ["/images-to-pdf", "Convert images to PDF", "Combine JPG and PNG images into one private document."],
@@ -71,7 +81,7 @@ export default function Home() {
       <section className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
         <p className="text-sm font-bold uppercase tracking-wider text-orange-600">Learn before you export</p>
         <h2 className="mt-3 text-3xl font-black">Practical image tutorials</h2>
-        <p className="mt-4 max-w-2xl leading-7 text-slate-600">Prepare an Instagram post, artwork for Reels or TikTok, or a correctly sized document image. Understand dimensions, file formats and quality before changing your file.</p>
+        <p className="mt-4 max-w-2xl leading-7 text-slate-600">Choose dimensions before using the image resizer for an Instagram post, artwork for Reels or TikTok, or a document image. Understand dimensions, file formats and quality before changing your file.</p>
         <div className="mt-6 flex flex-wrap gap-4">
           <Link href="/blog/instagram-post-image-size" className="font-bold text-orange-700 underline">Instagram image sizes</Link>
           <Link href="/blog/passport-photo-dimensions-pixels" className="font-bold text-orange-700 underline">Passport photo dimensions</Link>
@@ -91,8 +101,8 @@ export default function Home() {
             </h3>
 
             <p className="mt-2 leading-7 text-slate-500">
-              Your images are processed locally in your browser and
-              never uploaded to our servers.
+              The image resizer processes your files locally in your browser,
+              without uploading them to our servers.
             </p>
           </div>
 
@@ -117,7 +127,7 @@ export default function Home() {
             </h3>
 
             <p className="mt-2 leading-7 text-slate-500">
-              No account, no subscription and no complicated setup.
+              Use the image resizer without an account or subscription. Choose your file and start editing.
             </p>
           </div>
         </div>
@@ -159,6 +169,23 @@ export default function Home() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-8">
+        <h2 className="text-3xl font-black">Understand your resize settings</h2>
+        <p className="mt-4 leading-7 text-slate-600">Pixel dimensions control how large an image is. File size measures its bytes and also depends on the format, quality and image content.</p>
+        <div className="mt-7 grid gap-6 md:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/guides/image-resizer-dimensions.svg" alt="Image resizer diagram: 1200 by 800 pixels becomes 600 by 400 pixels, keeping the same 3:2 proportions." width={640} height={360} loading="lazy" className="h-auto w-full" />
+            <figcaption className="p-5 text-sm leading-6 text-slate-600">Halving both dimensions leaves one quarter of the original pixels. Keep the aspect ratio locked to avoid stretching.</figcaption>
+          </figure>
+          <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/guides/image-resizer-workflow.svg" alt="Image resizer workflow: choose an image, set dimensions with the aspect ratio locked, then inspect and download the result." width={640} height={360} loading="lazy" className="h-auto w-full" />
+            <figcaption className="p-5 text-sm leading-6 text-slate-600">Choose dimensions first, then inspect the export. If an upload form imposes a byte limit, compress the result and check readability again.</figcaption>
+          </figure>
         </div>
       </section>
 
